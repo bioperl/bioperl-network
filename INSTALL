@@ -1,0 +1,51 @@
+$Id$
+
+bioperl-network Installation
+
+1. Requirements
+2. Installing bioperl-network (Unix or Cygwin)
+3. Installing bioperl-network (Windows and ActiveState Perl)
+
+
+1. Requirements 
+
+	The bioperl-network package depends on the core BioPerl package. See 
+	http://www.bioperl.org/wiki/Getting_BioPerl or the BioPerl INSTALL file
+	for instructions for downloading and installing BioPerl. 
+	
+	bioperl-network also depends on Perl's Graph package. See CPAN at 
+	www.perl.org for instructions on downloading and installing Graph,
+	use Graph version .70 or greater. The Graph package depends on a Perl
+	version of 5.6 or greater.
+
+	Reading PSI XML files using bioperl-network requires the XML::Twig 
+	module.  See CPAN at www.perl.org for instructions on downloading 
+	and installing XML::Twig.
+
+
+2. Installing bioperl-network (Unix and Cygwin)
+
+	Example:
+
+	>gunzip bioperl-network-0.1.tar.gz
+
+	>tar xvf bioperl-network-0.1.tar
+
+	>cd bioperl-network-0.1
+
+	>perl Makefile.PL
+
+	>make
+
+	>make test
+
+	>make install
+
+You may have to have root privileges in order to run 'make install' 
+successfully on Unix. See the BioPerl INSTALL file for alternative approaches
+if you don't have root or administrative privileges.
+
+
+3. Installing bioperl-network (Windows and ActiveState Perl)
+
+  No PPM available as of 5/2006.
