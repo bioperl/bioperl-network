@@ -16,7 +16,7 @@ BEGIN {
 		use lib 't';
 	}
 	use Test;
-	$NUMTESTS = 18;
+	$NUMTESTS = 21;
 	plan tests => $NUMTESTS;
 	eval { require Graph; };
 	if ( $@ ) {
@@ -60,8 +60,10 @@ my @proteins = $n->proteins;
 ok $proteins[0]->species->binomial,"Helicobacter pylori 26695";
 ok $proteins[0]->primary_seq->desc,"hypothetical HP0001";
 my @rts = $g1->articulation_points;
-ok scalar @rts,1;
-# ok $rts[0]->primary_seq->desc,"hypothetical HP001"; # not OK, bug in Graph!
+ok scalar @rts,1; # correct, by inspection in Cytoscape
+@proteins = $rts[0]->proteins;
+my $seq = $proteins[0];
+ok $seq->desc,"hypothetical HP0001"; # correct, by inspection in Cytoscape
 
 #
 # PSI XML from IntAct
@@ -79,6 +81,11 @@ ok $proteins[0]->species->binomial,"Simian virus 40";
 ok $proteins[0]->primary_seq->desc,"Large T antigen";
 my @components = $g1->connected_components;
 ok scalar @components, 2;
+@rts = $g1->articulation_points;
+ok scalar @rts,1; # OK, inspected in Cytoscape
+@proteins = $rts[0]->proteins;
+$seq = $proteins[0];
+ok $seq->desc,"Erythropoietin receptor precursor"; # OK, inspected in Cytoscape
 
 #
 # PSI XML from HPRD
@@ -88,9 +95,6 @@ ok $io = Bio::Network::IO->new
 	-file   => Bio::Root::IO->catfile("t", "data", "00001.xml"));
 # ok $g1 = $io->next_network(); 
 # The individual files from HPRD are not standard PSI, problems parsing them
-
-
-
 
 __END__
 
