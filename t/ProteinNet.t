@@ -16,7 +16,7 @@ BEGIN {
 		use lib 't';
 	}
 	use Test;
-	$NUMTESTS = 175;
+	$NUMTESTS = 189;
 	plan tests => $NUMTESTS;
 	eval { require Graph; };
 	if ($@) {
@@ -295,10 +295,30 @@ ok @ns, 0;
 #
 @components = $g1->components;
 ok scalar @components, 3;
-
+#
+# additional articulation_points tests
+# arath_small-02.xml is PSI MI version 1.0
+ok $io = Bio::Network::IO->new
+  (-format => 'psi_xml',
+	-file   => Bio::Root::IO->catfile("t", "data", "arath_small-02.xml"));
+ok $g1 = $io->next_network();
+ok $g1->nodes, 73;
+ok $g1->interactions, 516;
+@nodes = $g1->articulation_points;
+ok scalar @nodes, 8;
+@ids = qw(EBI-621930 EBI-622235 EBI-622281 EBI-622140 
+			  EBI-622382 EBI-622306 EBI-622264 EBI-622203 );
+for my $node (@nodes) {
+	for my $prot ($node->proteins) {
+		my $id = $prot->display_id;
+		ok grep /$id/,@ids;
+	}
+}
 
 __END__
 
-Need:
+
+
+Need to test:
 
 _get_ids
