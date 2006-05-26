@@ -67,9 +67,9 @@ for my $k (keys %ids) {
 # test articulation_points
 #
 my @nodes = $g1->articulation_points();
-ok $#nodes, 4;
+ok $#nodes, 12;
 my $nodes = $g1->articulation_points();
-ok $nodes, 4;
+ok $nodes, 13;
 #
 # test deleting nodes
 #
@@ -81,7 +81,7 @@ my $g2 = $g1->delete_vertices($g1->get_nodes_by_id('DIP:3082N'),
 ok $g2->edges, 75;
 ok $g2->vertices, 74;
 @nodes = $g2->articulation_points();
-ok scalar @nodes,5;
+ok scalar @nodes, 14;
 #
 # test for identifiers and Annotations
 #
@@ -164,15 +164,15 @@ ok $g2->get_nodes_by_id('B64'), undef;
 #
 # test subgraph
 #
-@ids = qw(EBI-354674 EBI-444335 EBI-349968 EBI-354657
-			 EBI-302230 EBI-640775 EBI-640793 EBI-79764);
-
 $io = Bio::Network::IO->new
 (-format => 'psi_xml',
  -file   => Bio::Root::IO->catfile("t","data","bovin_small_intact.xml"));
 my $g = $io->next_network();
 ok $g->edges, 15;
 ok $g->nodes, 23;
+
+@ids = qw(EBI-354674 EBI-444335 EBI-349968 EBI-354657
+			 EBI-302230 EBI-640775 EBI-640793 EBI-79764);
 @nodes = $g->get_nodes_by_id(@ids);
 ok scalar @nodes,8;
 my $sg = $g->subgraph(@nodes);
@@ -184,16 +184,24 @@ $sg = $g->subgraph(@nodes);
 ok $sg->edges, 0;
 ok $sg->nodes, 1;
 #
-# test is_articulation_point
+# test articulation_points
 #
 @nodes = $g->articulation_points;
-ok scalar @nodes, 4;
-$node = $g->get_nodes_by_id('EBI-620432');
-ok $g->is_articulation_point($node), 1;
-$node = $g->get_nodes_by_id('EBI-307814');
-ok $g->is_articulation_point($node), 1;
-$node = $g->get_nodes_by_id('EBI-307800');
-ok $g->is_articulation_point($node), 0;
+ok scalar @nodes, 4; # OK, inspected in Cytoscape
+
+my @eids = qw(EBI-307814 EBI-79764 EBI-620432 EBI-620400);
+my @seqs = $nodes[0]->proteins;
+my $id = $seqs[0]->display_id;
+ok grep /$id/, @eids;
+@seqs = $nodes[1]->proteins;
+$id = $seqs[0]->display_id;
+ok grep /$id/, @eids;
+@seqs = $nodes[2]->proteins;
+$id = $seqs[0]->display_id;
+ok grep /$id/, @eids;
+@seqs = $nodes[3]->proteins;
+$id = $seqs[0]->display_id;
+ok grep /$id/, @eids;
 #
 # test internal method _all_pairs
 #
@@ -252,11 +260,9 @@ ok $node2 =	$g1->get_nodes_by_id("GenBank:2134877");
 ok scalar keys %interx, 2;
 
 ok $ix = $g1->get_interaction_by_id("DIP:16E");
-my $score = $ix->weight;
-ok $score,3;
+ok $ix->weight, 3;
 ok $ix = $g1->get_interaction_by_id("DIP:19E");
-$score = $ix->weight;
-ok $score,12;
+ok $ix->weight, 12;
 #
 # test that removing a node removes its edges correctly
 #
