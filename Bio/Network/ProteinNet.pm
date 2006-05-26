@@ -143,7 +143,7 @@ the nodes or vertices in the network are Sequence objects.
 
 =head2 Nodes
 
-A node is a BioPerl sequence object, a L<Bio::Seq> or 
+A node is one or more BioPerl sequence object, a L<Bio::Seq> or 
 L<Bio::Seq::RichSeq> object. Essentially the graph can use any objects 
 that implement L<Bio::AnnotatableI> and L<Bio::IdentifiableI> interfaces 
 since these objects hold useful identifiers. This is relevant since the 
@@ -348,17 +348,22 @@ $GRAPH_ARRAY_INDEX = 5;
  Name      : get_interaction_by_id
  Purpose   : Get an interaction using an id
  Usage     : $interx = $g->get_interaction_by_id($id)
- Returns   : One Interaction
- Arguments : One Interaction identifier, the primary id
+ Returns   : One or more Interactions
+ Arguments : One or more Interaction identifiers, the primary id
 
 =cut
 
 sub get_interaction_by_id {
-	my ($self,$id) = @_;
-	$self->throw("I need an identifier!") unless ($id);
-	my @interx = $self->_interactions($id);
-	$self->warn("More than 1 Interaction retrieved using id $id") if ($#interx > 0);
-	@interx ? return $interx[0] : return 0;
+	my ($self,@ids) = @_;
+	$self->throw("I need an identifier!") unless (@ids);
+	my @interx;
+	for my $id (@ids) {
+	   my @temp;
+		push @temp, $self->[$GRAPH_ARRAY_INDEX]->{'_interx_id_map'}->{$id};
+		$self->warn("More than 1 Interaction retrieved using id $id") if ($#temp > 0);
+		push @interx,@temp;
+	}
+	scalar @interx == 1 ? return $interx[0] : return @interx;
 }
 
 =head2 get_nodes_by_id
@@ -1030,6 +1035,33 @@ sub edge_count {
 	return scalar $self->edges;
 }
 
+=head2 interactions
+
+ Name     : interactions
+ Purpose  : Count the total number of Interactions in the network (an Edge can 
+            have one or more Interactions) or retrieve all the Interactions in 
+            the network as an array
+ Usage    : my $count = $gr->interactions or
+            my @interx = $gr->interactions
+ Arguments:
+ Returns  : A number or an array of Interactions
+ Notes    :
+
+=cut
+
+sub interactions {
+	my $self = shift;
+	if (wantarray) {
+		my @interx;
+		for my $id (keys %{$self->[$GRAPH_ARRAY_INDEX]->{'_interx_id_map'}}) {
+			push @interx, $self->[$GRAPH_ARRAY_INDEX]->{'_interx_id_map'}->{$id};
+		}
+		return @interx;
+	} else {
+		return scalar keys %{$self->[$GRAPH_ARRAY_INDEX]->{'_interx_id_map'}};
+	}
+}
+
 =head2 neighbor_count
 
  Name      : neighbor_count
@@ -1127,26 +1159,6 @@ sub _ids {
 	}
 	return @refs;
 }
-
-=head2 _interactions
-
- Name      : _interactions
- Purpose   : 
- Usage     : 
- Arguments : 
- Returns   : 
-
-=cut
-
-sub _interactions {
-	my $self = shift;
-	my @interactions;
-	while (my $id = shift) {
-		push @interactions, $self->[$GRAPH_ARRAY_INDEX]->{'_interx_id_map'}->{$id};
-	}
-	return @interactions;
-}
-
 
 1;
 
