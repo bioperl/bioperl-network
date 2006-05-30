@@ -16,10 +16,22 @@ Bio::Network::ProteinNet - a representation of a protein interaction graph.
                                       -format => 'psi_xml');
   my $graph = $graphio->next_network();
 
+  my @edges = $gr->edges;
+
+  for my $edge (@edges) {
+    for my $node ($edge->[0],$edge->[1]) {
+      my @proteins = $node->proteins;
+      for my $protein (@proteins) {
+        print $protein->display_id," ";
+      }
+    }
+    print "\n";
+  }
+
 =head2 Working with Nodes
 
-A Node object is either a protein or a protein complex. Nodes are 
-typically retrieved through their identifiers:
+A Node object represents either a protein or a protein complex. Nodes can
+be retrieved through their identifiers:
 
   # Get a node (represented by a sequence object) from the graph.
   my $node = $graph->get_nodes_by_id('UniProt:P12345');
@@ -65,7 +77,7 @@ typically retrieved through their identifiers:
     }
   }
   print "the following proteins have > 10 interactors:\n";
-  print join "\n", map{$_->primary_id()} @hubs;
+  print join "\n", map {$_->primary_id()} @hubs;
 
   # Get clustering coefficient of a given node.
   my $id = "RefSeq:NP_023232";
@@ -79,20 +91,19 @@ typically retrieved through their identifiers:
   # How many edges are there?
   my $ecount = $graph->edges;
 
-  # Get all the paired nodes, or edges, in the graph
+  # Get all the paired nodes, or edges, in the graph as an array
   my @edges = $graph->edges
-
-
 
 =head2 Working with Interactions
 
   # How many interactions are there?
   my $icount = $graph->interactions;
 
+  # Retrieve all interactions
+  my @interx = $graph->interactions;
+
   # Let's get interactions above a threshold confidence score.
-  my @edges = $graph->edges;
-  for my $edge (@edges)
-  while (my $interx = $edge->next_interaction) {
+  for my $interx (@interx) {
 	 if ($interx->weight > 0.6) {
 		 print $interx->primary_id, "\t", $interx->weight, "\n";
 	 }
@@ -713,20 +724,20 @@ sub get_ids_by_node {
 
  Name        : add_interaction
  Purpose     : Adds an Interaction to a graph.
- Usage       : $gr->add_edge(-interaction => $interx
-                             -nodes => \@nodes );
+ Usage       : $gr->add_interaction(-interaction => $interx
+                                    -nodes => \@nodes );
  Arguments   : An Interaction object and a reference to an array holding 
                a pair of nodes
  Returns     :
- Description : This is the method to use to add an interaction to a graph. 
-             
+ Description : This is the method to use to add an interaction to a graph.
+
 =cut
 
 sub add_interaction {
 	my $self = shift;
    my ($interx,$nodesref) = $self->_rearrange([qw(INTERACTION NODES)],@_);
    my @nodes = @$nodesref;	
-   my $interxid = $interx->primary_id;
+   #my $interxid = $interx->primary_id;
 
 	$self->throw("The add_edge method needs 2 nodes, not ". scalar @nodes . 
 					 " nodes") if ($#nodes != 1);
@@ -744,9 +755,9 @@ sub add_interaction {
 		}
    }
 
-   $self->add_edge($nodes[0],$nodes[1]);
-	$self->set_edge_attribute($nodes[0],$nodes[1],$interxid,$interx);
-	$self->add_id_to_interaction($interxid,$interx);
+   $self->add_edge($nodes[0], $nodes[1]);
+	$self->set_edge_attribute($nodes[0], $nodes[1], $interx->primary_id, $interx);
+	$self->add_id_to_interaction($interx->primary_id, $interx);
 	# Store the node names in the Interaction object
 	$interx->{_nodes} = $nodesref;
 }
