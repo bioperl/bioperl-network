@@ -16,7 +16,7 @@ and creating networks from this data.
 
   # Read protein interaction data in some format
   my $io = Bio::Network::IO->new(-file => 'bovine.xml',
-                                       -format => 'psi_xml' );
+                                 -format => 'psi_xml' );
   my $network = $io->next_network;
 
 =head1  DESCRIPTION
@@ -41,7 +41,7 @@ with the $seqio-E<gt>next_seq() and $alnio-E<gt>next_aln() methods.
 
 =head2  $io-E<gt>write_network($network)
 
-Unimplemented.
+UNIMPLEMENTED.
 
 =head1 REQUIREMENTS
 

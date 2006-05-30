@@ -53,8 +53,8 @@ be retrieved through their identifiers:
   print "\n";
 
   # Annotate your sequences with interaction info
-  my @seqs; ## array of sequence objects
-  for my $seq (@seqs) {
+  my @seq_objects = ($seq1, $seq2, $seq3);
+  for my $seq (@seq_objects) {
     if ( $graph->get_nodes_by_id($seq->accession_number) ) {
        my $node = $graph->get_nodes_by_id( $seq->accession_number);
        my @neighbors = $graph->neighbors($node);
@@ -647,51 +647,6 @@ sub subgraph {
 	$subgraph;
 }
 
-=head2 next_interaction
-
- Name      : next_interaction
- Purpose   : Retrieve Interactions using an edge
- Usage     : while (my $interx = $edge->next_interaction){ ... }
- Returns   : Interactions, one by one.
- Arguments :
-
-=cut
-
-sub next_interaction {
-
-
-}
-
-=head2 next_edge
-
- Name      : next_edge
- Purpose   : Retrieve all edges
- Usage     : while (my $edge = $graph->next_edge){ ... }
- Returns   : Edges, one by one.
- Arguments :
-
-=cut
-
-sub next_edge {
-
-
-}
-
-=head2 next_node
-
- Name      : next_node
- Purpose   : Retrieve all nodes
- Usage     : while (my $node = $graph->next_node){ ... }
- Returns   : Nodes, one by one.
- Arguments :
-
-=cut
-
-sub next_node {
-
-
-}
-
 =head2 get_ids_by_node
 
  Name     : get_ids_by_node
@@ -1174,3 +1129,48 @@ sub _ids {
 1;
 
 __END__
+
+=head2 next_interaction
+
+ Name      : next_interaction
+ Purpose   : Retrieve Interactions using an edge
+ Usage     : while (my $interx = $edge->next_interaction){ ... }
+ Returns   : Interactions, one by one.
+ Arguments :
+
+=cut
+
+sub next_interaction {
+
+
+}
+
+=head2 next_edge
+
+ Name      : next_edge
+ Purpose   : Retrieve all edges
+ Usage     : while (my $edge = $graph->next_edge){ ... }
+ Returns   : Edges, one by one.
+ Arguments :
+
+=cut
+
+sub next_edge {
+
+
+}
+
+=head2 next_node
+
+ Name      : next_node
+ Purpose   : Retrieve all nodes
+ Usage     : while (my $node = $graph->next_node){ ... }
+ Returns   : Nodes, one by one.
+ Arguments :
+
+=cut
+
+sub next_node {
+
+
+}

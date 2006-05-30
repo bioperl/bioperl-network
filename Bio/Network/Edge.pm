@@ -16,11 +16,10 @@ Bio::Network::Edge - holds the names of pairs of Nodes
   # get a network, somehow, then:
   my @edges = $graph->edges;
   for my $edge (@edges) {
-    my @nodes = $edge->nodes;
-    for my $node (@nodes) {
+    for my $node ($edge->[0],$edge->[1]) {
       my @proteins = $node->proteins;
       for my $protein (@proteins) {
-        print "Sequence is: ",$protein->seq,"\n";
+        print "Sequence is: ", $protein->seq, "\n";
       }
     }  
   }
@@ -97,7 +96,7 @@ sub new {
 =head2 nodes
 
  Name       : nodes
- Purpose    : Get or set the pair of nodes for an Edge
+ Purpose    : Get the pair of nodes for an Edge
  Usage      : my $count = $edge->nodes
                        or
               my @nodes = $edge->nodes
@@ -116,6 +115,10 @@ sub nodes {
 	wantarray ? return @nodes : return scalar @nodes;
 }
 
+1;
+
+__END__
+
 =head2 next_node
 
  Name       :
@@ -127,10 +130,6 @@ sub nodes {
 =cut
 
 sub next_node {
-	#my $self = shift;
+	my $self = shift;
 
 }
-
-1;
-
-__END__
