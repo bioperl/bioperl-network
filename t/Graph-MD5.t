@@ -20,7 +20,12 @@ BEGIN {
 	plan tests => $NUMTESTS;
 	eval { require Graph; };
 	if ( $@ ) {
-		warn("Perl's Graph required by the bioperl-network package, skipping tests");
+		warn("Graph required by the bioperl-network package, skipping tests");
+		$ERROR = 1;
+	}
+	eval { require Digest::MD5; };
+	if ( $@ ) {
+		warn("Digest::MD5 required for these tests, skipping tests");
 		$ERROR = 1;
 	}
 }
@@ -31,10 +36,6 @@ END {
 	}
 }
 exit 0 if $ERROR == 1;
-
-require Graph::Undirected;
-require Graph::Traversal::DFS;
-require Digest::MD5;
 
 #
 # The purpose of these tests is to check to see if bugs have been 
