@@ -16,7 +16,7 @@ BEGIN {
 		use lib 't';
 	}
 	use Test;
-	$NUMTESTS = 189;
+	$NUMTESTS = 233;
 	plan tests => $NUMTESTS;
 	eval { require Graph; };
 	if ($@) {
@@ -113,14 +113,17 @@ my @n1 = $g2->neighbors($g2->get_nodes_by_id('DIP:3047N'));
 ok scalar @n1,2;
 
 ok $g2->delete_vertices($g2->get_nodes_by_id('DIP:3048N'));
-
-## after deleting there is only 1 interactor
+#
+# after deleting there is only 1 interactor
+#
 @n1 = $g2->neighbors($g2->get_nodes_by_id('DIP:3047N'));
 ok scalar @n1,1;
 my $ncount = $g2->neighbor_count($g2->get_nodes_by_id('DIP:3047N'));
 ok $ncount, 1;
 
-## check no undefs left after node removal ##
+#
+# check no undefs left after node removal 
+#
 my @edges = $g2->edges;
 for my $edgeref (@edges) {
 	my %interactions = $g2->get_interactions(@$edgeref);
@@ -128,12 +131,14 @@ for my $edgeref (@edges) {
 		ok $interaction->primary_id;
 	}
 }
-
-## get an Interaction by its id
+#
+# get an Interaction by its id
+#
 ok my $interx = $g2->get_interaction_by_id('DIP:4368E');
 ok $interx->primary_id, 'DIP:4368E';
-
-## count all edges
+#
+# count all edges
+# 
 my $count = 0;
 ok $g2->edges, 74;
 
@@ -184,22 +189,30 @@ $sg = $g->subgraph(@nodes);
 ok $sg->edges, 0;
 ok $sg->nodes, 1;
 #
-# test articulation_points
+# test articulation_points, but first check that each Node
+# in network can load...
 #
+@nodes = $g->nodes;
+ok scalar @nodes, 23;
+foreach my $node (@nodes) {
+	my @seqs = $nodes[0]->proteins;
+	ok $seqs[0]->display_id;
+}
+
 @nodes = $g->articulation_points;
 ok scalar @nodes, 4; # OK, inspected in Cytoscape
 
 my @eids = qw(EBI-307814 EBI-79764 EBI-620432 EBI-620400);
-my @seqs = $nodes[0]->proteins;
+my @seqs = $nodes[0]->proteins; # Node not always loaded
 my $id = $seqs[0]->display_id;
 ok grep /$id/, @eids;
-@seqs = $nodes[1]->proteins;
+@seqs = $nodes[1]->proteins; # Node not always loaded
 $id = $seqs[0]->display_id;
 ok grep /$id/, @eids;
-@seqs = $nodes[2]->proteins;
+@seqs = $nodes[2]->proteins; # Node not always loaded
 $id = $seqs[0]->display_id;
 ok grep /$id/, @eids;
-@seqs = $nodes[3]->proteins;
+@seqs = $nodes[3]->proteins; # Node not always loaded
 $id = $seqs[0]->display_id;
 ok grep /$id/, @eids;
 #
@@ -298,6 +311,7 @@ ok scalar @components, 3;
 #
 # additional articulation_points tests
 # arath_small-02.xml is PSI MI version 1.0
+#
 ok $io = Bio::Network::IO->new
   (-format => 'psi_xml',
 	-file   => Bio::Root::IO->catfile("t", "data", "arath_small-02.xml"));
