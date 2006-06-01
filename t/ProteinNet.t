@@ -16,7 +16,7 @@ BEGIN {
 		use lib 't';
 	}
 	use Test;
-	$NUMTESTS = 233;
+	$NUMTESTS = 168;
 	plan tests => $NUMTESTS;
 	eval { require Graph; };
 	if ($@) {
@@ -64,13 +64,6 @@ for my $k (keys %ids) {
 	ok $ids{$k},$ids[$x++];
 }
 #
-# test articulation_points
-#
-my @nodes = $g1->articulation_points();
-ok $#nodes, 12;
-my $nodes = $g1->articulation_points();
-ok $nodes, 13;
-#
 # test deleting nodes
 #
 ok $g1->edges, 79;
@@ -80,8 +73,6 @@ my $g2 = $g1->delete_vertices($g1->get_nodes_by_id('DIP:3082N'),
 									   $g1->get_nodes_by_id('DIP:3083N') );
 ok $g2->edges, 75;
 ok $g2->vertices, 74;
-@nodes = $g2->articulation_points();
-ok scalar @nodes, 14;
 #
 # test for identifiers and Annotations
 #
@@ -103,12 +94,14 @@ ok $g2->is_tree, "";
 ok $g2->is_empty, "";
 ok $g2->is_cyclic, 1;
 ok $g2->expect_undirected;
-
-## get connected subgraphs
+#
+# get connected subgraphs
+#
 my @components = $g2->connected_components();
 ok scalar @components, 7;
-
-## before deleting 3048N, 3047N has 2 neighbours
+#
+# before deleting 3048N, 3047N has 2 neighbours
+#
 my @n1 = $g2->neighbors($g2->get_nodes_by_id('DIP:3047N'));
 ok scalar @n1,2;
 
@@ -120,7 +113,6 @@ ok $g2->delete_vertices($g2->get_nodes_by_id('DIP:3048N'));
 ok scalar @n1,1;
 my $ncount = $g2->neighbor_count($g2->get_nodes_by_id('DIP:3047N'));
 ok $ncount, 1;
-
 #
 # check no undefs left after node removal 
 #
@@ -178,7 +170,7 @@ ok $g->nodes, 23;
 
 @ids = qw(EBI-354674 EBI-444335 EBI-349968 EBI-354657
 			 EBI-302230 EBI-640775 EBI-640793 EBI-79764);
-@nodes = $g->get_nodes_by_id(@ids);
+my @nodes = $g->get_nodes_by_id(@ids);
 ok scalar @nodes,8;
 my $sg = $g->subgraph(@nodes);
 ok $sg->edges, 5;
@@ -188,33 +180,6 @@ ok $sg->nodes, 8;
 $sg = $g->subgraph(@nodes);
 ok $sg->edges, 0;
 ok $sg->nodes, 1;
-#
-# test articulation_points, but first check that each Node
-# in network can load...
-#
-@nodes = $g->nodes;
-ok scalar @nodes, 23;
-foreach my $node (@nodes) {
-	my @seqs = $nodes[0]->proteins;
-	ok $seqs[0]->display_id;
-}
-
-@nodes = $g->articulation_points;
-ok scalar @nodes, 4; # OK, inspected in Cytoscape
-
-my @eids = qw(EBI-307814 EBI-79764 EBI-620432 EBI-620400);
-my @seqs = $nodes[0]->proteins; # Node not always loaded
-my $id = $seqs[0]->display_id;
-ok grep /$id/, @eids;
-@seqs = $nodes[1]->proteins; # Node not always loaded
-$id = $seqs[0]->display_id;
-ok grep /$id/, @eids;
-@seqs = $nodes[2]->proteins; # Node not always loaded
-$id = $seqs[0]->display_id;
-ok grep /$id/, @eids;
-@seqs = $nodes[3]->proteins; # Node not always loaded
-$id = $seqs[0]->display_id;
-ok grep /$id/, @eids;
 #
 # test internal method _all_pairs
 #
@@ -254,9 +219,10 @@ ok my $ix = $g1->get_interaction_by_id("DIP:16E"), undef;
 ok $ix = $g1->get_interaction_by_id("DIP:19E"), undef;
 
 $g1->add_interactions_from($g2);
-
+#
 # $g1 should have 2 more Interactions with new interaction ids and
 # the same number of nodes and edges, $g2 should be unaffected
+#
 ok $g1->edges, 5;
 ok $g1->nodes, 7;
 ok $g2->edges, 3;
@@ -308,30 +274,8 @@ ok @ns, 0;
 #
 @components = $g1->components;
 ok scalar @components, 3;
-#
-# additional articulation_points tests
-# arath_small-02.xml is PSI MI version 1.0
-#
-ok $io = Bio::Network::IO->new
-  (-format => 'psi_xml',
-	-file   => Bio::Root::IO->catfile("t", "data", "arath_small-02.xml"));
-ok $g1 = $io->next_network();
-ok $g1->nodes, 73;
-ok $g1->interactions, 516;
-@nodes = $g1->articulation_points;
-ok scalar @nodes, 8;
-@ids = qw(EBI-621930 EBI-622235 EBI-622281 EBI-622140 
-			  EBI-622382 EBI-622306 EBI-622264 EBI-622203 );
-for my $node (@nodes) {
-	for my $prot ($node->proteins) {
-		my $id = $prot->display_id;
-		ok grep /$id/,@ids;
-	}
-}
 
 __END__
-
-
 
 Need to test:
 
