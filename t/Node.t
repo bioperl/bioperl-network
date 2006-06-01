@@ -16,7 +16,7 @@ BEGIN {
 		use lib 't';
 	}
 	use Test;
-	$NUMTESTS = 29;
+	$NUMTESTS = 30;
 	plan tests => $NUMTESTS;
 	eval { require Graph; };
 	if ($@) {
@@ -42,9 +42,9 @@ $verbose = 1 if $DEBUG;
 
 ok 1;
 
-my $seq1 = Bio::Seq->new(-seq => "aaaaaaa");
-my $seq2 = Bio::Seq->new(-seq => "ttttttt");
-my $seq3 = Bio::Seq->new(-seq => "ggggggg");
+my $seq1 = Bio::Seq->new(-seq => "aaaaaaa",-display_id => 1);
+my $seq2 = Bio::Seq->new(-seq => "ttttttt",-display_id => 2);
+my $seq3 = Bio::Seq->new(-seq => "ggggggg",-display_id => 3);
 
 #
 # 1 protein
@@ -56,6 +56,7 @@ ok $count, 1;
 
 my @proteins = $node->proteins;
 ok $proteins[0]->seq, "aaaaaaa";
+ok $proteins[0]->display_id, 1;
 ok $node->subunit_number($proteins[0]), undef;
 $node->subunit_number($proteins[0],52);
 ok $node->subunit_number($proteins[0]), 52;
@@ -81,9 +82,9 @@ ok $node->is_complex, 0;
 #
 # 1 or more proteins, specifying subunit composition
 #
-$node = Bio::Network::Node->new(-protein => [ [($seq1, 2)],
-														  [($seq2, 3)],
-														  [($seq3, 1)] ]);
+$node = Bio::Network::Node->new(-protein => [ [($seq1, 2) ],
+														  [ ($seq2, 3) ],
+														  [ ($seq3, 1)] ]);
 ok $node->is_complex, 1;
 @proteins = $node->proteins;
 $x = 0;
