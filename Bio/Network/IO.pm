@@ -16,7 +16,7 @@ and creating networks from this data.
 
   # Read protein interaction data in some format
   my $io = Bio::Network::IO->new(-file => 'bovine.xml',
-                                 -format => 'psi_xml' );
+                                 -format => 'psi' );
   my $network = $io->next_network;
 
 =head1  DESCRIPTION
@@ -95,7 +95,7 @@ use Bio::Root::IO;
 
  Name       : new
  Usage      : $io = Bio::Network::IO->new(-file => 'myfile.xml', 
-                                          -format => 'psi_xml');
+                                          -format => 'psi');
  Returns    : A Bio::Network::IO stream initialised to the appropriate format.
  Args       : Named parameters: 
               -file      => $filename

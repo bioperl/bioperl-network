@@ -13,7 +13,7 @@ Bio::Network::ProteinNet - a representation of a protein interaction graph.
 
   # Read in from file
   my $graphio = Bio::Network::IO->new(-file   => 'human.xml',
-                                      -format => 'psi_xml');
+                                      -format => 'psi');
   my $graph = $graphio->next_network();
 
   my @edges = $gr->edges;
@@ -215,7 +215,7 @@ These modules were first released as part of the core BioPerl package
 and were called Bio::Graph. Bio::Graph was copied to a separate package,
 bioperl-network, and renamed Bio::Network. All of the modules were
 revised and a new module, Interaction.pm, was added. The
-functionality of the PSI MI parser, IO/psi_xml.pm, was significantly
+functionality of the PSI MI parser, IO/psi.pm, was significantly
 enhanced.
 
 Graph manipulation in Bio::Graph was based on the Bio::Graph::SimpleGraph 
@@ -306,7 +306,7 @@ L<Bio::Network::Edge>
 L<Bio::Network::Node>
 L<Bio::Network::Interaction>
 L<Bio::Network::IO::dip>
-L<Bio::Network::IO::psi_xml>
+L<Bio::Network::IO::psi>
 
 =head1 FEEDBACK
 

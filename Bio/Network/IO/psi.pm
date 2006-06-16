@@ -1,19 +1,19 @@
 # $Id$
 #
-# BioPerl module for Bio::Network::IO::psi_xml
+# BioPerl module for Bio::Network::IO::psi
 #
 # You may distribute this module under the same terms as perl itself
 # POD documentation - main docs before the code
 
 =head1 NAME
 
-Bio::Network::IO::psi_xml
+Bio::Network::IO::psi
 
 =head1 SYNOPSIS
 
 Do not use this module directly, use Bio::Network::IO:
 
-  my $io = Bio::Network::IO->new(-format => 'psi_xml',
+  my $io = Bio::Network::IO->new(-format => 'psi',
                                  -file   => 'data.xml');
 
   my $network = $io->next_network;
@@ -202,7 +202,7 @@ Brian Osborne osborne1@optonline.net
 
 =cut
 
-package Bio::Network::IO::psi_xml;
+package Bio::Network::IO::psi;
 use strict;
 use XML::Twig;
 use Bio::Root::Object;
@@ -263,11 +263,11 @@ sub _proteinInteractor {
 
 	my ($acc, $sp, $desc, $prim_id);
 
-	my $org =  $pi->first_child('organism');
-	my $taxid  = $org->att('ncbiTaxId');
+	my $org = $pi->first_child('organism');
+	my $taxid = $org->att('ncbiTaxId');
 
-	## just make new species object if doesn't already exist ##
-	if (!exists($species{$taxid})) {
+	# Make new species object if doesn't already exist
+	if ( !exists($species{$taxid}) ) {
 		my $common     =  $org->first_child('names')->first_child('shortLabel')->text;
 		my $full       =  $org->first_child('names')->first_child('fullName')->text;
 		my ($gen,$sp)  = $full =~ /(\S+)\s+(.+)/;
@@ -278,7 +278,7 @@ sub _proteinInteractor {
 		$species{$taxid} = $sp_obj;
 	}
 
-	## next extract sequence id info ##
+	# Extract sequence and ontology identifiers
 	my @ids          = $pi->first_child('xref')->children();
 	my %ids          = map {$_->att('db'), $_->att('id')} @ids;
 	$ids{'psixml'}   = $pi->att('id');
@@ -293,8 +293,8 @@ sub _proteinInteractor {
 			 $ids{'intact'} ||     # db name from IntAct
 			 $ids{'psi-mi'};       # db name from IntAct
 
-	## get description line - certain files, like PSI XML from HPRD, have
-	## "shortLabel" but no "fullName"
+	# Get description line - certain files, like PSI XML from HPRD, have
+	# "shortLabel" but no "fullName"
 	eval {
 		$desc = $pi->first_child('names')->first_child('fullName')->text; 
 	};
@@ -303,8 +303,7 @@ sub _proteinInteractor {
 		$desc = $pi->first_child('names')->first_child('shortLabel')->text;
 	}
 	
-	# use ids that aren't accession_no or primary_tag to build 
-   # dbxref Annotations
+	# Use ids other than accession_no or primary_id for DBLink annotations
 	my $ac = Bio::Annotation::Collection->new();	
 	for my $db (keys %ids) {
 		next if $ids{$db} eq $acc;
@@ -315,7 +314,7 @@ sub _proteinInteractor {
 		$ac->add_Annotation('dblink',$an);
 	}
 
-	## now we can make sequence object ##
+	# Make sequence object
 	my $prot = $fac->create(
 						-accession_number => $acc,
 						-desc             => $desc,
@@ -324,16 +323,16 @@ sub _proteinInteractor {
 						-species          => $species{$taxid},
 						-annotation       => $ac);
 
-	## now fill hash with keys = ids and vals = node refs to have lookup
-	## hash for nodes by any id.	
-
+	# Add node to network
 	my $node = Bio::Network::Node->new(-protein => [($prot)]);
 	$net->add_node($node);
+
+	# Add primary identifier and accession to internal id <-> node mapping hash
 	$net->add_id_to_node($ids{'psixml'},$node);
 	$net->add_id_to_node($prot->primary_id,$node);
 	$net->add_id_to_node($prot->accession_number,$node);
 
-	## cycle thru annotations
+	# Add secondary identifiers to internal id <-> node mapping hash
 	$ac = $prot->annotation();
 	for my $an ($ac->get_Annotations('dblink')) {
 		$net->add_id_to_node($an->primary_id,$node);
@@ -363,7 +362,7 @@ sub _addInteraction {
 
 	my $interx = Bio::Network::Interaction->new(-id => $interx_id);
 	$net->add_interaction(-nodes => [($node1,$node2)],
-							  -interaction => $interx );
+							    -interaction => $interx );
 	$net->add_id_to_interaction($interx_id,$interx);
 
 	$twig->purge();
