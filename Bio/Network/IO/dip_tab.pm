@@ -54,11 +54,29 @@ The version as of 1/2006 has no database identifiers:
 
 This module parses both versions.
 
-
 =head1 METHODS
 
 The naming system is analagous to the SeqIO system, although usually
 next_network() will be called only once per file.
+
+=head1 FEEDBACK
+
+=head2 Mailing Lists
+
+User feedback is an integral part of the evolution of this and other
+Bioperl modules. Send your comments and suggestions preferably to one
+of the Bioperl mailing lists. Your participation is much appreciated.
+
+  bioperl-l@bioperl.org             - General discussion
+  http://bio.perl.org/MailList.html  - About the mailing lists
+
+=head2 Reporting Bugs
+
+Report bugs to the Bioperl bug tracking system to help us keep track
+the bugs and their resolution.  Bug reports can be submitted via the
+web:
+
+  http://bugzilla.bioperl.org/
 
 =head1 AUTHORS
 
