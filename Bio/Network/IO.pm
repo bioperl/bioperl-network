@@ -36,8 +36,8 @@ The main methods are:
 =head2  $net = $io-E<gt>next_network
 
 The next_network method does not imply that multiple networks are
-contained in a file, this is to maintain the consistency of nomenclature
-with the $seqio-E<gt>next_seq() and $alnio-E<gt>next_aln() methods.
+contained in a file, this is to maintain a consistent nomenclature
+with Bioperl methods like $seqio-E<gt>next_seq and $alnio-E<gt>next_aln.
 
 =head2  $io-E<gt>write_network($network)
 
@@ -101,7 +101,7 @@ use Bio::Root::IO;
               -file      => $filename
               -format    => format
 				  -threshold => a confidence score for the interaction, optional
-
+              -source    => optional database name (e.g. "intact")
 =cut
 
 sub new {
@@ -118,13 +118,13 @@ sub new {
 			Bio::Root::Root->throw("Must specify a valid format!");
 		} 
 		my $format = $param{'-format'};
-		$format    = "\L$format";	
+		$format = "\L$format";	
 		return undef unless ($class->_load_format_module($format)); 
 		return "Bio::Network::IO::$format"->new(@args);
 	}
 }
 
-=head2    next_network
+=head2 next_network
 
  Name       : next_network
  Usage      : $gr = $io->next_network
@@ -138,7 +138,7 @@ sub next_network {
    $self->throw("Sorry, you cannot read from a generic Bio::Network::IO object.");
 }
 
-=head2    write_network
+=head2 write_network
 
  Name       : write_network
  Usage      : $gr = $io->write_network($net).
