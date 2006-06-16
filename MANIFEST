@@ -1,6 +1,7 @@
 Bio/Network/ProteinNet.pm
 Bio/Network/IO/dip_tab.pm
 Bio/Network/IO/psi.pm
+Bio/Network/IO/psi/intact.pm
 Bio/Network/Interaction.pm
 Bio/Network/Node.pm
 Bio/Network/Edge.pm
