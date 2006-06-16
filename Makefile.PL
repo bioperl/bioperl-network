@@ -12,7 +12,7 @@
 # All Bioperl dependencies on external modules are defined here
 %packages = (
 				 'Graph' => '0.69/Graph data structures and algorithms/graph construction and analysis/Bio::Graph*',
-				 'XML::Twig' => '3.22/Read and write XML/parsing PSI XML/Bio::Graph::IO::psi_xml' 
+				 'XML::Twig' => '3.22/Read and write XML/parsing PSI XML/Bio::Graph::IO::psi' 
 				);
 
 sub check_package {

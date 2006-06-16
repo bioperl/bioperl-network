@@ -1,6 +1,6 @@
 Bio/Network/ProteinNet.pm
 Bio/Network/IO/dip_tab.pm
-Bio/Network/IO/psi_xml.pm
+Bio/Network/IO/psi.pm
 Bio/Network/Interaction.pm
 Bio/Network/Node.pm
 Bio/Network/Edge.pm
@@ -17,8 +17,10 @@ t/Edge.t
 t/Interaction.t
 t/Node.t
 t/IO_dip_tab.t
-t/IO_psi_xml.t
-t/Graph.t
+t/IO_psi.t
+t/Graph-Articulation.t
+t/Graph-MD5.t
+t/Graph-Seq.t
 t/data/psi_xml.dat
 t/data/sv40_small.xml
 t/data/tab1part.tab
