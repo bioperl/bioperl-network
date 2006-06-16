@@ -54,8 +54,6 @@ my $io = Bio::Network::IO->new(
 ok(defined $io);
 ok my $g1 = $io->next_network();
 
-my ($ap, $bc, $br) = $g1->biconnectivity;
-
 my @nodes = $g1->articulation_points();
 ok $#nodes, 12;
 my $nodes = $g1->articulation_points();
@@ -65,7 +63,7 @@ ok $nodes, 13;
 # in network can load...
 #
 $io = Bio::Network::IO->new
-(-format => 'psi_xml',
+(-format => 'psi',
  -file   => Bio::Root::IO->catfile("t","data","bovin_small_intact.xml"));
 my $g = $io->next_network();
 
@@ -76,7 +74,7 @@ foreach my $node (@nodes) {
 	ok $seqs[0]->display_id;
 }
 
-($ap, $bc, $br) = $g->biconnectivity;
+# ($ap, $bc, $br) = $g->biconnectivity;
 
 @nodes = $g->articulation_points;
 ok scalar @nodes, 4; # OK, inspected in Cytoscape
@@ -99,7 +97,7 @@ ok grep /$id/, @eids;
 # arath_small-02.xml is PSI MI version 1.0
 #
 ok $io = Bio::Network::IO->new
-  (-format => 'psi_xml',
+  (-format => 'psi',
 	-file   => Bio::Root::IO->catfile("t", "data", "arath_small-02.xml"));
 ok $g1 = $io->next_network();
 ok $g1->nodes, 73;
