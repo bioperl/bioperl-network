@@ -23,6 +23,11 @@ BEGIN {
 		warn "Perl's Graph needed for the bioperl-network package, skipping tests";
 		$ERROR = 1;
 	}
+	eval { require XML::Twig; };
+	if ($@) {
+		warn "XML::Twig needed for XML format parsing, skipping tests";
+		$ERROR = 1;
+	}
 }
 
 END {
