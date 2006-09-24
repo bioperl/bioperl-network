@@ -54,24 +54,22 @@ Brian Osborne osborne1@optonline.net
 
 package Bio::Network::IO::psi::intact;
 use strict;
-use vars qw(@ISA $FAC);
+use vars qw(@ISA $FAC @EXPORT);
 use Bio::Network::IO;
 use Bio::Annotation::DBLink;
 use Bio::Annotation::Collection;
 
+@EXPORT = qw(&);
+
 =head2
 
- Name     :
- Purpose  : 
- Arguments: 
- Returns  : 
- Usage    :
+ Name      :
+ Purpose   : 
+ Arguments : 
+ Returns   : 
+ Usage     :
 
 =cut
-
-sub {
-
-}
 
 1;
 
