@@ -18,7 +18,7 @@ BEGIN {
 	use Test;
 	$NUMTESTS  = 19;
 	plan tests => $NUMTESTS;
-	eval { require Graph; };
+	eval { require Graph::Undirected; };
 	if ( $@ ) {
 		warn("Graph required by the bioperl-network package, skipping tests");
 		$ERROR = 1;
