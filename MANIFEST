@@ -19,7 +19,7 @@ t/Interaction.t
 t/Node.t
 t/IO_dip_tab.t
 t/IO_psi.t
-t/Graph-Articulation.t
+t/Graph-Articulation.x
 t/Graph-MD5.t
 t/Graph-Seq.t
 t/data/psi_xml.dat
