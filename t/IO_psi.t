@@ -57,7 +57,7 @@ ok $g1->node_count, 4;
 ok $g1->is_connected,1;
 my $n = $g1->get_nodes_by_id('O24853');
 my @proteins = $n->proteins;
-ok $proteins[0]->species->binomial,"Helicobacter pylori 26695";
+ok $proteins[0]->species->binomial('FULL'),"Helicobacter pylori 26695";
 ok $proteins[0]->primary_seq->desc,"hypothetical HP0001";
 my @rts = $g1->articulation_points;
 ok scalar @rts,1; # correct, by inspection in Cytoscape
@@ -78,7 +78,7 @@ ok $g1->is_connected, "";
 
 $n = $g1->get_nodes_by_id("P03070");
 @proteins = $n->proteins;
-ok $proteins[0]->species->binomial,"Simian virus 40";
+ok $proteins[0]->species->binomial('FULL'),"Simian virus 40";
 ok $proteins[0]->primary_seq->desc,"Large T antigen";
 
 my @components = $g1->connected_components;

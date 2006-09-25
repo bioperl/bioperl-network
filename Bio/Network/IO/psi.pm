@@ -288,9 +288,8 @@ sub _proteinInteractor {
 	if ( !exists($species{$taxid}) ) {
 		my $common     =  $org->first_child('names')->first_child('shortLabel')->text;
 		my $full       =  $org->first_child('names')->first_child('fullName')->text;
-		my ($gen,$sp)  = $full =~ /(\S+)\s+(.+)/;
 		my $sp_obj     = Bio::Species->new(-ncbi_taxid     => $taxid,
-													  -classification => [$sp, $gen],
+													  -name => $full,
 													  -common_name    => $common
 													 );
 		$species{$taxid} = $sp_obj;
