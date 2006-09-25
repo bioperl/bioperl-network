@@ -1,4 +1,4 @@
-# --Makefile.PL for Bioperl core module distribution-------
+# --Makefile.PL for bioperl-network distribution-------
 # ---------------------------------------------------------
 # $Id$
 # ---------------------------------------------------------
@@ -9,17 +9,18 @@
 # If you want help with this file get in touch with the 
 # developers by sending a message to bioperl-l@bioperl.org.
 
-# All Bioperl dependencies on external modules are defined here
+# All bioperl-network dependencies on external modules are defined here
 %packages = (
-				 'Graph' => '0.69/Graph data structures and algorithms/graph construction and analysis/Bio::Graph*',
-				 'XML::Twig' => '3.22/Read and write XML/parsing PSI XML/Bio::Graph::IO::psi' 
+ 'Graph' => '0.80/Graph data structures and algorithms/graph construction and analysis/Bio::Network::ProteinNet',
+ 'XML::Twig' => '3.22/Read and write XML/parsing PSI XML/Bio::Graph::IO::psi' 
 				);
 
 sub check_package {
 	my ($name,$str) = @_;
 	my ($ver,$desc,$expl,$module) = split( /\// , $str);
-	if( !eval "require($name)") {
-		print "External Module $name, $desc,\n is not installed on this computer.\n  $module in bioperl-network needs it for $expl\n\n";
+	if ( !eval "require($name)") {
+		print "External Module $name $ver, $desc,\nis not installed on this computer.\n" .
+		      "$module in bioperl-network needs it for $expl\n\n";
 		return 1;
 	}
 	return 0;
@@ -31,7 +32,7 @@ sub check_package {
 
 # make mini test targets for playing around with in testing...
 
-opendir(DIR,"t") || die "No test directory. Weird!";
+opendir(DIR,"t") || die "No test directory.";
 @files = readdir(DIR);
 shift @files;
 shift @files;
@@ -74,17 +75,13 @@ if ( $error == 1 ) {
 
 Warning:
 
-   There are some external packages and Perl modules, listed above, which 
-   bioperl-network uses. This only effects the functionality which is listed above:
-   the rest of Bioperl will work fine.
+   There are some Perl modules, listed above, which bioperl-network uses.
 
    The installation of these external packages is very simple. You
    can read more about Bioperl external dependencies at
 
    http://bioperl.open-bio.org/wiki/Main_Page
    
-   Enjoy bioperl-network, which you can use after going 'make install'
-
 QQ_ERROR_QQ
 }
 
