@@ -28,6 +28,11 @@ Bio::Network::ProteinNet - a representation of a protein interaction graph.
     print "\n";
   }
 
+=head1 Perl Graph module
+
+The bioperl-network package uses Perl's Graph module and it's essential
+that version .80 or greater be installed.
+
 =head2 Working with Nodes
 
 A Node object represents either a protein or a protein complex. Nodes can
@@ -341,7 +346,7 @@ module written by Nat Goodman.
 
 package Bio::Network::ProteinNet;
 use strict;
-use Graph::Undirected;
+use Graph 0.80;
 use Bio::Network::Interaction;
 use Bio::Root::Root;
 
