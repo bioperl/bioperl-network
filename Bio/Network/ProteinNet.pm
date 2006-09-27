@@ -236,8 +236,8 @@ responsible for maintaining the code that actually handles graph
 manipulation and there is more functionality in Graph than in SimpleGraph.
 
 The disadvantage is that we now rely on others to keep the package bug-free,
-and there are some bugs in Graph. You should use version .70 or later but
-even this version is not free of bugs (a list of known bugs 
+and there are some bugs in Graph. You should use version .80 or greater 
+but even this version is not free of bugs (a list of known bugs 
 can be found in the BUGS file in this package).
 
 =over 13
