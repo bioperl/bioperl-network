@@ -11,7 +11,6 @@ AUTHORS
 BUGS
 README
 INSTALL
-TO-DO
 Makefile.PL
 t/ProteinNet.t
 t/Edge.t
