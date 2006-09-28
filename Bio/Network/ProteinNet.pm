@@ -301,8 +301,8 @@ object_id() is now an alias to Interaction::primary_id()
 
 =head1  REQUIREMENTS
 
-To read XML data (e.g. PSI XML) you will need XML::Twig, available from 
-CPAN.
+To use this module you need Graph.pm, version .80 or greater. To 
+read XML data (e.g. PSI XML) you will need XML::Twig.
 
 =head1 SEE ALSO
 
@@ -346,11 +346,12 @@ module written by Nat Goodman.
 
 package Bio::Network::ProteinNet;
 use strict;
+use Bio::Root::Root;
 use Graph 0.80;
 use Bio::Network::Interaction;
 use Bio::Root::Root;
 
-use vars qw(@ISA $GRAPH_ARRAY_INDEX);
+use vars qw($GRAPH_ARRAY_INDEX @ISA);
 
 @ISA = qw( Graph::Undirected Bio::Root::Root );
 
