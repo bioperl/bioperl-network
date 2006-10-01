@@ -293,12 +293,12 @@ sub _proteinInteractor {
 
 	# Make new species object if doesn't already exist
 	if ( !exists($species{$taxid}) ) {
-		my $common     =  $org->first_child('names')->first_child('shortLabel')->text;
-		my $full       =  $org->first_child('names')->first_child('fullName')->text;
-		my $sp_obj     = Bio::Species->new(-ncbi_taxid     => $taxid,
-													  -name => $full,
-													  -common_name    => $common
-													 );
+		my $common =  $org->first_child('names')->first_child('shortLabel')->text;
+		my $full   =  $org->first_child('names')->first_child('fullName')->text;
+		my $sp_obj = Bio::Species->new(-ncbi_taxid  => $taxid,
+												 -name        => $full,
+												 -common_name => $common
+												);
 		$species{$taxid} = $sp_obj;
 	}
 
@@ -309,13 +309,14 @@ sub _proteinInteractor {
 
 	$prim_id = defined ($ids{'GI'}) ?  $ids{'GI'} : '';
 	$acc = $ids{'RefSeq'} || 
-	       $ids{'SWP'} || 
+	       $ids{'SWP'} ||        # DIP's name for Swissprot
 			 $ids{'Swiss-Prot'} || # db name from HPRD
 			 $ids{'Ref-Seq'} ||    # db name from HPRD
 			 $ids{'GI'} || 
 			 $ids{'PIR'} ||
 			 $ids{'intact'} ||     # db name from IntAct
-			 $ids{'psi-mi'};       # db name from IntAct
+			 $ids{'psi-mi'} ||     # db name from IntAct
+			 $ids{'DIP'};          # DIP node name
 
 	# Get description line - certain files, like PSI XML from HPRD, have
 	# "shortLabel" but no "fullName"
@@ -330,7 +331,7 @@ sub _proteinInteractor {
 	# Use ids other than accession_no or primary_id for DBLink annotations
 	my $ac = Bio::Annotation::Collection->new();	
 	for my $db (keys %ids) {
-		next if $ids{$db} eq $acc;
+		next if $ids{$db} eq $acc; print "desc $desc\n" unless $acc; 
 		next if $ids{$db} eq $prim_id;
 		my $an = Bio::Annotation::DBLink->new( -database   => $db,
 															-primary_id => $ids{$db},
