@@ -21,14 +21,20 @@ Do not use this module directly, use Bio::Network::IO:
 =head1 DESCRIPTION
 
 PSI MI (Protein Standards Initiative Molecular Interaction) XML is a format 
-to describe protein-protein interactions and interaction networks. The 
-following databases provide their data as PSI MI XML:
+to describe protein-protein interactions and interaction networks. 
+
+=head2 Databases
+
+The following databases provide their data as PSI MI XML:
 
 BIND    L<http://www.bind.ca>
 DIP     L<http://dip.doe-mbi.ucla.edu/>
 HPRD    L<http://www.hprd.org>
 IntAct  L<http://www.ebi.ac.uk/intact>
 MINT    L<http://cbm.bio.uniroma2.it/mint/>
+
+Each of these databases will call PSI format by some different name. For
+example, PSI MI from DIP comes in files with the suffix "mif".
 
 Documentation for PSI XML can be found at L<http://psidev.sourceforge.net>.
 
@@ -236,8 +242,9 @@ use Bio::Annotation::Collection;
 use Bio::Annotation::Comment;
 use Bio::Annotation::Reference;
 use Bio::Annotation::SimpleValue;
+use Bio::Network::IO::psi::intact;
 
-use vars qw(@ISA %species $net $fac );
+use vars qw( @ISA %species $net $fac );
 @ISA = qw(Bio::Network::IO Bio::Root::Object );
 
 BEGIN {
