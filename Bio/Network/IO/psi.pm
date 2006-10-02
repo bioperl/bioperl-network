@@ -229,7 +229,7 @@ Brian Osborne bosborne at alum.mit.edu
 package Bio::Network::IO::psi;
 use strict;
 use XML::Twig;
-use Bio::Root::Object;
+use Bio::Root::Root;
 use Bio::Seq::SeqFactory;
 use Bio::Network::ProteinNet;
 use Bio::Network::Interaction;
@@ -245,7 +245,7 @@ use Bio::Annotation::SimpleValue;
 use Bio::Network::IO::psi::intact;
 
 use vars qw( @ISA %species $net $fac );
-@ISA = qw(Bio::Network::IO Bio::Root::Object );
+@ISA = qw(Bio::Network::IO Bio::Root::Root );
 
 BEGIN {
 	$fac = Bio::Seq::SeqFactory->new(-type => 'Bio::Seq::RichSeq');
