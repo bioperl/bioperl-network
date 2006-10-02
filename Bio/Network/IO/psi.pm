@@ -308,15 +308,22 @@ sub _proteinInteractor {
 	$ids{'psixml'}   = $pi->att('id');
 
 	$prim_id = defined ($ids{'GI'}) ?  $ids{'GI'} : '';
+	# needs to be done by reference to an actual ontology:
 	$acc = $ids{'RefSeq'} || 
 	       $ids{'SWP'} ||        # DIP's name for Swissprot
 			 $ids{'Swiss-Prot'} || # db name from HPRD
 			 $ids{'Ref-Seq'} ||    # db name from HPRD
+          $ids{'uniprotkb'} ||  # db name from MINT
 			 $ids{'GI'} || 
 			 $ids{'PIR'} ||
 			 $ids{'intact'} ||     # db name from IntAct
 			 $ids{'psi-mi'} ||     # db name from IntAct
-			 $ids{'DIP'};          # DIP node name
+			 $ids{'DIP'} ||        # DIP node name
+          $ids{'ensembl'} ||    # db name from MINT
+          $ids{'flybase'} ||    # db name from MINT
+          $ids{'wormbase'} ||   # db name from MINT
+          $ids{'sgd'} ||        # db name from MINT
+          $ids{'mint'};         # db name from MINT
 
 	# Get description line - certain files, like PSI XML from HPRD, have
 	# "shortLabel" but no "fullName"
