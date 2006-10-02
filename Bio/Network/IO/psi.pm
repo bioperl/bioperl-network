@@ -293,8 +293,14 @@ sub _proteinInteractor {
 
 	# Make new species object if doesn't already exist
 	if ( !exists($species{$taxid}) ) {
-		my $common =  $org->first_child('names')->first_child('shortLabel')->text;
-		my $full   =  $org->first_child('names')->first_child('fullName')->text;
+		my $common = $org->first_child('names')->first_child('shortLabel')->text;
+		my $full;
+		# some PSI MI files have entries with species lacking "fullName"
+		eval {
+			$full = $org->first_child('names')->first_child('fullName')->text;
+		};
+		$full = $common if $@;
+
 		my $sp_obj = Bio::Species->new(-ncbi_taxid  => $taxid,
 												 -name        => $full,
 												 -common_name => $common
@@ -310,20 +316,21 @@ sub _proteinInteractor {
 	$prim_id = defined ($ids{'GI'}) ?  $ids{'GI'} : '';
 	# needs to be done by reference to an actual ontology:
 	$acc = $ids{'RefSeq'} || 
-	       $ids{'SWP'} ||        # DIP's name for Swissprot
-			 $ids{'Swiss-Prot'} || # db name from HPRD
-			 $ids{'Ref-Seq'} ||    # db name from HPRD
-          $ids{'uniprotkb'} ||  # db name from MINT
+	       $ids{'SWP'} ||               # DIP's name for Swissprot
+			 $ids{'Swiss-Prot'} ||        # db name from HPRD
+			 $ids{'Ref-Seq'} ||           # db name from HPRD
+          $ids{'uniprotkb'} ||         # db name from MINT
 			 $ids{'GI'} || 
 			 $ids{'PIR'} ||
-			 $ids{'intact'} ||     # db name from IntAct
-			 $ids{'psi-mi'} ||     # db name from IntAct
-			 $ids{'DIP'} ||        # DIP node name
-          $ids{'ensembl'} ||    # db name from MINT
-          $ids{'flybase'} ||    # db name from MINT
-          $ids{'wormbase'} ||   # db name from MINT
-          $ids{'sgd'} ||        # db name from MINT
-          $ids{'mint'};         # db name from MINT
+			 $ids{'intact'} ||            # db name from IntAct
+			 $ids{'psi-mi'} ||            # db name from IntAct
+			 $ids{'DIP'} ||               # DIP node name
+          $ids{'ensembl'} ||           # db name from MINT
+          $ids{'flybase'} ||           # db name from MINT
+          $ids{'wormbase'} ||          # db name from MINT
+          $ids{'sgd'} ||               # db name from MINT
+          $ids{'ddbj/embl/genbank'} || # db name from MINT
+          $ids{'mint'};                # db name from MINT
 
 	# Get description line - certain files, like PSI XML from HPRD, have
 	# "shortLabel" but no "fullName"
