@@ -53,7 +53,7 @@ web:
 =head1 AUTHORS
 
 Richard Adams richard.adams@ed.ac.uk
-Brian Osborne osborne1@optonline.net
+Brian Osborne bosborne at alum.mit.edu
 
 Maintained by Brian Osborne
 

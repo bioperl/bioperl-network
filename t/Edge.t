@@ -20,7 +20,7 @@ BEGIN {
 	plan tests => $NUMTESTS;
 	eval { require Graph; };
 	if ($@) {
-		warn "Perl's Graph needed for the bioperl-network package, skipping tests";
+		warn "Graph module needed for the bioperl-network package, skipping tests";
 		$ERROR = 1;
 	}
 }
