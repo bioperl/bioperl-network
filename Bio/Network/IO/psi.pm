@@ -331,7 +331,7 @@ sub _proteinInteractor {
 	# Use ids other than accession_no or primary_id for DBLink annotations
 	my $ac = Bio::Annotation::Collection->new();	
 	for my $db (keys %ids) {
-		next if $ids{$db} eq $acc; print "desc $desc\n" unless $acc; 
+		next if $ids{$db} eq $acc;
 		next if $ids{$db} eq $prim_id;
 		my $an = Bio::Annotation::DBLink->new( -database   => $db,
 															-primary_id => $ids{$db},
