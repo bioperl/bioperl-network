@@ -17,23 +17,22 @@ bioperl-network.
 2. Introduction
 
 A ProteinNet is a representation of a protein-protein interaction network.
-Its functionality comes from the Graph module of Perl and from BioPerl,
-as the nodes or vertices in a ProteinNet network are Sequence objects.
+Its functionality derives from the Graph module of Perl and from BioPerl.
+These sorts of networks, or graphs, can be modeled as nodes, or
+vertices, connected by edges.
 
-A node or vertex is one or more BioPerl sequence objects, a Bio::Seq or 
-Bio::Seq::RichSeq object. Essentially the node can be any Bioperl object 
-that implement Bio::AnnotatableI and Bio::IdentifiableI interfaces 
-since these objects hold useful identifiers. This is relevant since the 
-identity of nodes is determined by their identifiers.
+A node is one or more BioPerl sequence objects, a Bio::Seq or 
+Bio::Seq::RichSeq object. Since a node can contain more than one
+Sequence object it can represent protein complexes as well as proteins.
+Essentially the node can be any Bioperl object that implements the
+Bio::AnnotatableI and Bio::IdentifiableI interfaces. This is relevant since the 
+identities of nodes are determined by their identifiers.
 
-Since a node can contain more than one Sequence objects it can
-represent protein complexes as well as proteins.
-
-As bioperl-network is built on top of the Perl's Graph::Undirected 
-modules it uses its formal model as well. An Edge corresponds to a 
-pair of nodes, and there is only one Edge per pair. An Interaction is an 
-attribute of an Edge, and there can be 1 or more Interactions per Edge.
-An Interaction can be thought of as one experiment or one experimental 
+The bioperl-network modules use Perl's Graph::Undirected 
+module and inherit its formal model as well. An edge corresponds to a 
+pair of nodes, and there is only one edge per pair. An interaction is an 
+attribute of an edge, and there can be 1 or more interactions per edge.
+An interaction can be thought of as one experiment or one experimental 
 observation. 
 
 The formats that can be parsed are DIP (tab-delimited) and PSI MI (XML). 
