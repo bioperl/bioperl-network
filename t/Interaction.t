@@ -39,7 +39,6 @@ require Bio::Network::Node;
 require Bio::Seq;
 require Bio::Annotation::Collection;
 require Bio::Annotation::OntologyTerm;
-require Bio::Annoation::Comment;
 
 my $verbose = 0;
 $verbose = 1 if $DEBUG;
