@@ -85,18 +85,28 @@ Warning:
 QQ_ERROR_QQ
 }
 
+# generate hash for prerequisites
+# for use in WriteMakefile
+my %prereq;
+while (my ($key, $value) = each %packages) {
+  my ($version,$desc,$expl,$module) = split( /\// , $value);                                                                          
+  $prereq{$key} = $version;
+}
+
 WriteMakefile(
-				  NAME	=> $NAME,
-				  DISTNAME    => $DISTNAME,
-				  VERSION     => $VERSION,
-				  'dist'      => {  COMPRESS     => 'gzip -9f',
-										  SUFFIX       => '.gz', 
-										  DIST_DEFAULT => 'all tardist',
-									  },
-				  ($] ge '5.005')  ? (
-				  'AUTHOR'   => 'Bioperl Team (bioperl-l@bioperl.org)',
-				  'ABSTRACT' => 'bioperl-network - package for biological networks',
-											) : (),
-				  'realclean' => {  FILES        => join(' ',@BACKUP_FILES) },
-				  DIR         => [  ], # directories with other Makefile.PL's in them
-				 );
+  NAME	    => $NAME,
+  DISTNAME  => $DISTNAME,
+  VERSION   => $VERSION,
+  dist      => {  COMPRESS     => 'gzip -9f',
+                  SUFFIX       => '.gz', 
+		  DIST_DEFAULT => 'all tardist',
+  },
+  ($] ge '5.005')  ? (
+    'AUTHOR'   => 'Bioperl Team (bioperl-l@bioperl.org)',
+    'ABSTRACT' => 'bioperl-network - package for biological networks',
+  ) : (),
+  realclean => {  FILES        => join(' ',@BACKUP_FILES) },
+  DIR       => [  ], # directories with other Makefile.PL's in them
+  PREREQ_PM   => \%prereq,
+);
+
