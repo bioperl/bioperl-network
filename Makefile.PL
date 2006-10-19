@@ -13,14 +13,14 @@
 %packages = (
  'Graph' => '0.80/Graph data structures and algorithms/graph construction and analysis/Bio::Network::ProteinNet',
  'XML::Twig' => '3.22/Read and write XML/parsing PSI XML/Bio::Graph::IO::psi',
- 'Bio::Root::Root'       => '0.0/Bioperl//',
+ 'Bio::Root::Version'       => '0.0/Bioperl//',
 );
 
 sub check_package {
 	my ($name,$str) = @_;
 	my ($ver,$desc,$expl,$module) = split( /\// , $str);
 	if ( !eval "require($name)") {
-		if ($name eq 'Bio::Root::Root') {
+		if ($name eq 'Bio::Root::Version') {
 		  print "Bioperl-network absolutely needs Bioperl to work - It makes no sense without it\n";
 		  exit(0);
 		}
