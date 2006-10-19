@@ -12,13 +12,18 @@
 # All bioperl-network dependencies on external modules are defined here
 %packages = (
  'Graph' => '0.80/Graph data structures and algorithms/graph construction and analysis/Bio::Network::ProteinNet',
- 'XML::Twig' => '3.22/Read and write XML/parsing PSI XML/Bio::Graph::IO::psi' 
-				);
+ 'XML::Twig' => '3.22/Read and write XML/parsing PSI XML/Bio::Graph::IO::psi',
+ 'Bio::Root::Root'       => '0.0/Bioperl//',
+);
 
 sub check_package {
 	my ($name,$str) = @_;
 	my ($ver,$desc,$expl,$module) = split( /\// , $str);
 	if ( !eval "require($name)") {
+		if ($name eq 'Bio::Root::Root') {
+		  print "Bioperl-network absolutely needs Bioperl to work - It makes no sense without it\n";
+		  exit(0);
+		}
 		print "External Module $name $ver, $desc,\nis not installed on this computer.\n" .
 		      "$module in bioperl-network needs it for $expl\n\n";
 		return 1;
@@ -85,28 +90,18 @@ Warning:
 QQ_ERROR_QQ
 }
 
-# generate hash for prerequisites
-# for use in WriteMakefile
-my %prereq;
-while (my ($key, $value) = each %packages) {
-  my ($version,$desc,$expl,$module) = split( /\// , $value);                                                                          
-  $prereq{$key} = $version;
-}
-
 WriteMakefile(
-  NAME	    => $NAME,
-  DISTNAME  => $DISTNAME,
-  VERSION   => $VERSION,
-  dist      => {  COMPRESS     => 'gzip -9f',
-                  SUFFIX       => '.gz', 
-		  DIST_DEFAULT => 'all tardist',
-  },
-  ($] ge '5.005')  ? (
-    'AUTHOR'   => 'Bioperl Team (bioperl-l@bioperl.org)',
-    'ABSTRACT' => 'bioperl-network - package for biological networks',
-  ) : (),
-  realclean => {  FILES        => join(' ',@BACKUP_FILES) },
-  DIR       => [  ], # directories with other Makefile.PL's in them
-  PREREQ_PM   => \%prereq,
-);
-
+				  NAME	=> $NAME,
+				  DISTNAME    => $DISTNAME,
+				  VERSION     => $VERSION,
+				  'dist'      => {  COMPRESS     => 'gzip -9f',
+										  SUFFIX       => '.gz', 
+										  DIST_DEFAULT => 'all tardist',
+									  },
+				  ($] ge '5.005')  ? (
+				  'AUTHOR'   => 'Bioperl Team (bioperl-l@bioperl.org)',
+				  'ABSTRACT' => 'bioperl-network - package for biological networks',
+											) : (),
+				  'realclean' => {  FILES        => join(' ',@BACKUP_FILES) },
+				  DIR         => [  ], # directories with other Makefile.PL's in them
+				 );
