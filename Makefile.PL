@@ -90,6 +90,14 @@ Warning:
 QQ_ERROR_QQ
 }
 
+# generate hash for prerequisites
+# # for use in WriteMakefile
+my %prereq;
+while (my ($key, $value) = each %packages) {
+  my ($version,$desc,$expl,$module) = split( /\// , $value);
+  $prereq{$key} = $version;
+}
+
 WriteMakefile(
 				  NAME	=> $NAME,
 				  DISTNAME    => $DISTNAME,
@@ -104,4 +112,5 @@ WriteMakefile(
 											) : (),
 				  'realclean' => {  FILES        => join(' ',@BACKUP_FILES) },
 				  DIR         => [  ], # directories with other Makefile.PL's in them
+				  PREREQ_PM   => \%prereq,
 				 );
