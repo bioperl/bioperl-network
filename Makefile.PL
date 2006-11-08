@@ -15,14 +15,15 @@ use File::Spec::Functions;
 use ExtUtils::MakeMaker;
 use Cwd;
 
-my $VERSION  = "1.5.2-RC3";
+my $VERSION = 1.005002_003;
+$VERSION = eval $VERSION;
 
 # All Bioperl dependencies on external modules are defined here
 # (these are mostly considered optional)
 my %packages = (
  'Graph'							=> '0.80/Graph data structures and algorithms/graph construction and analysis/Bio::Network::ProteinNet',
  'XML::Twig'					=> '3.22/Read and write XML/parsing PSI XML/Bio::Graph::IO::psi',
- 'Bio::Root::Version'	=> '20.0/Bioperl/basic functionality/Everything',
+ 'Bio::Root::Version'	=> '1.005002/Bioperl/basic functionality/Everything',
 );
 
 # We don't want CPAN, Bundle::BioPerl et al. to know about these for various
