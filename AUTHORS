@@ -1,8 +1,10 @@
-$Id: AUTHORS,v 1.2 2006-10-02 16:05:37 bosborne Exp $
+$Id: AUTHORS,v 1.3 2006-11-08 10:59:13 sendu Exp $
 
 bioperl-network Authors
 
 * Richard Adams <Richard.Adams at ed.ac.uk>
+
+* Sendu Bala <bix at sendu.me.uk>
 
 * Nat Goodman
 
