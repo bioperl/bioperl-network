@@ -9,43 +9,75 @@ bioperl-network Installation
 
 1. Requirements 
 
+    Perl 5.6.1 is required.
+
 	The bioperl-network package depends on the core BioPerl package. See 
 	http://www.bioperl.org/wiki/Getting_BioPerl or the BioPerl INSTALL file
-	for instructions for downloading and installing BioPerl. 
+	for instructions for downloading and installing BioPerl. You must
+    install at least the corresponding version of Bioperl: since this
+    is bioperl-network 1.5.2, bioperl 1.5.2 is required.
 	
 	bioperl-network also depends on Perl's Graph package. See CPAN at 
 	www.perl.org for instructions on downloading and installing Graph,
-	use Graph version .80 or greater. The Graph package depends on a Perl
-	version of 5.6 or greater.
+	use Graph version .80 or greater.
 
 	Reading PSI XML files using bioperl-network requires the XML::Twig 
-	module.  See CPAN at www.perl.org for instructions on downloading 
+	module. See CPAN at www.perl.org for instructions on downloading 
 	and installing XML::Twig.
 
 
 2. Installing bioperl-network (Unix and Cygwin)
 
-	Example:
+    Using CPAN:
+    First, find the name of the bioperl-network version you want:
 
-	>gunzip bioperl-network-0.1.tar.gz
+    >cpan
+    cpan>d /bioperl-network/
+    Database was generated on Mon, 20 Nov 2006 05:24:36 GMT
+    Distribution S/SE/SENDU/bioperl-network-1.5.2_100.tar.gz
+  
+    Now install:
 
-	>tar xvf bioperl-network-0.1.tar
+    cpan>install S/SE/SENDU/bioperl-network-1.5.2_100.tar.gz
 
-	>cd bioperl-network-0.1
+    If you've installed everything perfectly then you may pass all the tests
+    run in the './Build test' phase.
+    It's also possible that you may fail some tests. Possible explanations:
+    problems with local Perl installation, previously undetected bug in
+    Bioperl, flawed test script and so on. A few failed tests may not affect
+    your usage of bioperl-network.
 
-	>perl Makefile.PL
+    If you decide that the failed tests will not affect how you intend to use
+    bioperl-network and you'd like to install anyway do:
 
-	>make
+    cpan>force install S/SE/SENDU/bioperl-network-1.5.2_100.tar.gz
 
-	>make test
+    This is what most experienced Bioperl users would do. However, if you're
+    concerned about a failed test and need assistance or advice then contact
+    bioperl-l@bioperl.org.
+    
+    
+	Manual installation:
+    >gunzip bioperl-network-<release-version>.tar.gz
+    >tar xvf bioperl-network-<release-version>.tar
+    >cd bioperl-network
+    
+    where <release-version> is the current release.
+    
+    >perl Build.PL
+    
+    You can run regression tests and install bioperl-network using the
+    following commands:
+    
+    >./Build test  
+    >./Build install
 
-	>make install
 
-You may have to have root privileges in order to run 'make install' 
-successfully on Unix. See the BioPerl INSTALL file for alternative approaches
-if you don't have root or administrative privileges.
+    You may have to have root privileges in order to run './Build install' 
+    successfully on Unix. See the BioPerl INSTALL file for alternative approaches
+    if you don't have root or administrative privileges.
 
 
 3. Installing bioperl-network (Windows and ActiveState Perl)
 
-  No PPM available as of 5/2006.
+    No PPM available as of 5/2006.
