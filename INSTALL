@@ -28,6 +28,10 @@ bioperl-network Installation
 
 2. Installing bioperl-network (Unix, Mac OS X and Cygwin)
 
+    Installation instructions at the following address apply here:
+    http://www.bioperl.org/wiki/Installing_Bioperl_for_Unix
+    The following sections summarize the essential points from there.
+
     Using CPAN:
     To install using CPAN you will need a recent version (v1.8802 has
     been tested) of it and your prefer_installer conf set to 'MB':
@@ -89,7 +93,7 @@ bioperl-network Installation
 3. Installing bioperl-network (Windows and ActiveState Perl)
 
     The following page on the BioPerl website has up-to-date
-    instructions on how to install bioperl-db on Windows:
+    instructions on how to install bioperl-network on Windows:
 
     http://www.bioperl.org/wiki/Installing_Bioperl_on_Windows
 
