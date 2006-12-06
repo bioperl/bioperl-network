@@ -26,10 +26,18 @@ bioperl-network Installation
 	and installing XML::Twig.
 
 
-2. Installing bioperl-network (Unix and Cygwin)
+2. Installing bioperl-network (Unix, Mac OS X and Cygwin)
 
     Using CPAN:
-    First, find the name of the bioperl-network version you want:
+    To install using CPAN you will need a recent version (v1.8802 has
+    been tested) of it and your prefer_installer conf set to 'MB':
+    
+    >cpan
+    cpan>o conf prefer_installer MB
+    cpan>o conf commit
+    cpan>q
+    
+    Now find the name of the bioperl-network version you want:
 
     >cpan
     cpan>d /bioperl-network/
@@ -80,4 +88,10 @@ bioperl-network Installation
 
 3. Installing bioperl-network (Windows and ActiveState Perl)
 
-    No PPM available as of 5/2006.
+    The following page on the BioPerl website has up-to-date
+    instructions on how to install bioperl-db on Windows:
+
+    http://www.bioperl.org/wiki/Installing_Bioperl_on_Windows
+
+    (the instructions are aimed at bioperl-core, but apply
+    equally to bioperl-db)
