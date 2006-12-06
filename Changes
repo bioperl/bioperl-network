@@ -1,0 +1,12 @@
+Revision history for bioperl-network.
+
+Full details of changes between all versions are available online at:
+http://www.bioperl.org/wiki/Change_log
+
+1.5.2
+-----
+First named release: released with bioperl-1.5.2 developer branch release
+
+Introduced Build.PL as the recommended alternative to installation,
+instead of Makefile.PL
+
