@@ -94,4 +94,4 @@ bioperl-network Installation
     http://www.bioperl.org/wiki/Installing_Bioperl_on_Windows
 
     (the instructions are aimed at bioperl-core, but apply
-    equally to bioperl-db)
+    equally to bioperl-network)
