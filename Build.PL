@@ -25,7 +25,8 @@ my $build = ModuleBuildBioperl->new(
     recommends          => {
                             'XML::Twig'					=> '3.22/parsing PSI XML/Bio::Graph::IO::psi'
                            },
-    dynamic_config      => 1
+    dynamic_config      => 1,
+    create_makefile_pl  => 'passthrough'
     
     #pm_files           => {} # modules in Bio are treated as if they were in lib and auto-installed
     #script_files       => [] # scripts in scripts directory are installed on-demand
