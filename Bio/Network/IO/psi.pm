@@ -40,8 +40,9 @@ Documentation for PSI XML can be found at L<http://psidev.sourceforge.net>.
 
 =head2 Version
 
-This module supports PSI MI version 2.5, described at
-L<http://psidev.sourceforge.net/mi/rel25/>.
+This module supports a subset of the fields described in PSI MI version 2.5
+(L<http://psidev.sourceforge.net/mi/rel25/>). The NODE DATA section below
+describes which fields are currently parsed into ProteinNet networks.
 
 =head2 Notes
 
@@ -59,7 +60,7 @@ L<http://www.ebi.ac.uk/ontology-lookup/browse.do?ontName=MI>.
 The naming system is analagous to the SeqIO system, although usually
 next_network() will be called only once per file.
 
-=head1 NODE DATA
+=head1 DATA IN THE NODE
 
 The Node (protein or protein complex) is roughly equivalent to the PSI MI 
 B<interactor> (entrySet/entry/interactorList/interactor). The following are 
@@ -70,17 +71,42 @@ object.
 
 Annotation::SimpleValue
 
-=head2 interactor/names/alias
-
-Annotation::SimpleValue
-
 =head2 interactor/names/fullName
 
 Annotation::SimpleValue
 
-=head2 interactor/sequence
+=head2 interactor/xref/primaryRef
 
-Sequence object
+Annotation::DBLink
+
+=head2 interactor/xref/secondaryRef
+
+Annotation::DBLink
+
+Bio::Species object
+
+=head2 interactor/organism/names/alias
+
+Bio::Species object
+
+=head2 interactor/organism/names/fullName
+
+Bio::Species object
+
+=head2 interactor/organism/names/shortLabel
+
+Bio::Species object
+
+=head1 DATA NOT YET AVAILABLE
+
+The following are subclasses of B<interactor> whose values are currently not
+accessible through the Node object.
+
+=head2 interactor/names/alias
+
+Annotation::SimpleValue
+
+=head2 interactor/sequence
 
 =head2 interactor/interactorType/names
 
@@ -93,26 +119,6 @@ OntologyTerm
 =head2 interactor/interactorType/xref
 
 Annotation::DBLink
-
-=head2 interactor/xref/primaryRef
-
-Annotation::DBLink
-
-=head2 interactor/xref/secondaryRef
-
-Annotation::DBLink
-
-=head2 interactor/organism/names/shortLabel
-
-Bio::Species object
-
-=head2 interactor/organism/names/alias
-
-Bio::Species object
-
-=head2 interactor/organism/names/fullName
-
-Bio::Species object
 
 =head2 interactor/organism/cellType
 
@@ -133,7 +139,7 @@ The Interaction object is roughly equivalent to the PSI MI B<interaction>
 (entrySet/entry/interactionList/interaction) and B<experimentDescription>
 (entrySet/entry/experimentList/experimentDescription). The following are
 subclasses of B<interaction> and B<experimentDescription> whose values are 
-accessible through the Interaction object.
+NOT yet accessible through the Interaction object.
 
 =head2 interaction/xref/primaryRef
 
@@ -390,7 +396,6 @@ sub _proteinInteractor {
 =cut
 
 sub _addInteraction {
-
 	my ($twig, $i) = @_;
 	my @ints = $i->first_child('participantList')->children;
 	my @nodeids = map {$_->first_child('proteinInteractorRef')->att('ref')} @ints;
