@@ -1,19 +1,19 @@
 # $Id$
 #
-# BioPerl module for Bio::Network::IO::psi
+# BioPerl module for Bio::Network::IO::psi10
 #
 # You may distribute this module under the same terms as perl itself
 # POD documentation - main docs before the code
 
 =head1 NAME
 
-Bio::Network::IO::psi
+Bio::Network::IO::psi10
 
 =head1 SYNOPSIS
 
 Do not use this module directly, use Bio::Network::IO:
 
-  my $io = Bio::Network::IO->new(-format => 'psi',
+  my $io = Bio::Network::IO->new(-format => 'psi10',
                                  -file   => 'data.xml');
 
   my $network = $io->next_network;
@@ -22,6 +22,7 @@ Do not use this module directly, use Bio::Network::IO:
 
 PSI MI (Protein Standards Initiative Molecular Interaction) XML is a format 
 to describe protein-protein interactions and interaction networks. 
+This module parses version 1.0 of PSI MI.
 
 =head2 Databases
 
@@ -40,7 +41,7 @@ Documentation for PSI XML can be found at L<http://psidev.sourceforge.net>.
 
 =head2 Version
 
-This module supports a subset of the fields described in PSI MI version 2.5
+This module supports a subset of the fields described in PSI MI version 1.0
 (L<http://psidev.sourceforge.net/mi/rel25/>). The NODE DATA section below
 describes which fields are currently parsed into ProteinNet networks.
 
@@ -232,7 +233,7 @@ Brian Osborne bosborne at alum.mit.edu
 
 =cut
 
-package Bio::Network::IO::psi;
+package Bio::Network::IO::psi10;
 use strict;
 use XML::Twig;
 use Bio::Root::Root;
@@ -392,6 +393,7 @@ sub _proteinInteractor {
  Purpose  : Adds a new Interaction to a graph
  Usage    : Do not call, called internally by next_network()
  Returns  :
+ Notes    : The PSI MI 2.5 standard calls for a field titled interactorRef
 
 =cut
 
@@ -399,6 +401,7 @@ sub _addInteraction {
 	my ($twig, $i) = @_;
 	my @ints = $i->first_child('participantList')->children;
 	my @nodeids = map {$_->first_child('proteinInteractorRef')->att('ref')} @ints;
+
 	my $interx_id = $i->first_child('xref')->first_child('primaryRef')->att('id');
 	
 	my $node1 = $net->get_nodes_by_id($nodeids[0]);
