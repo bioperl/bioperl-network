@@ -119,7 +119,7 @@ ok scalar @n1,1;
 my $ncount = $g2->neighbor_count($g2->get_nodes_by_id('DIP:3047N'));
 ok $ncount, 1;
 #
-# check no undefs left after node removal 
+# check that no undefs are left after node removal 
 #
 my @edges = $g2->edges;
 for my $edgeref (@edges) {
@@ -186,7 +186,7 @@ $sg = $g->subgraph(@nodes);
 ok $sg->edges, 0;
 ok $sg->nodes, 1;
 #
-# test internal method _all_pairs
+# test internal method _all_pairs()
 #
 my @pairs = $g->_all_pairs(@ids);
 ok $#pairs, 27;

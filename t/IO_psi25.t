@@ -16,7 +16,7 @@ BEGIN {
 		use lib 't';
 	}
 	use Test;
-	$NUMTESTS = 19;
+	$NUMTESTS = 3;
 	plan tests => $NUMTESTS;
 	eval { require Graph; };
 	if ( $@ ) {
@@ -46,10 +46,21 @@ $verbose = 1 if $DEBUG;
 ok 1;
 
 #
+# PSI XML from HPRD
+#
+ok my $io = Bio::Network::IO->new
+  (-format => 'psi25',
+	-file   => Bio::Root::IO->catfile("t", "data", "human_small-01.xml"));
+ok my $g1 = $io->next_network(); 
+
+__END__
+
+
+#
 # PSI XML from DIP
 #
 ok my $io = Bio::Network::IO->new
-  (-format => 'psi',
+  (-format => 'psi10',
 	-file   => Bio::Root::IO->catfile("t", "data", "psi_xml.dat"));
 ok my $g1 = $io->next_network();
 ok $g1->edge_count, 3;
@@ -69,7 +80,7 @@ ok $seq->desc,"hypothetical HP0001"; # correct, by inspection in Cytoscape
 # PSI XML from IntAct
 #
 ok $io = Bio::Network::IO->new
-  (-format => 'psi',
+  (-format => 'psi10',
 	-file   => Bio::Root::IO->catfile("t", "data", "sv40_small.xml"));
 ok $g1 = $io->next_network();
 ok $g1->edge_count, 3;
@@ -97,15 +108,4 @@ ok scalar @components, 2;
 #
 $n = $g1->get_nodes_by_id("EBI-474016");
 @proteins = $n->proteins;
-
-#
-# PSI XML from HPRD
-#
-ok $io = Bio::Network::IO->new
-  (-format => 'psi',
-	-file   => Bio::Root::IO->catfile("t", "data", "00001.xml"));
-# ok $g1 = $io->next_network(); 
-# The individual files from HPRD are not standard PSI, problems parsing them
-
-__END__
 
