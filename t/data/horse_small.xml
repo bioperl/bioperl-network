@@ -1,0 +1,356 @@
+   <entrySet level="2" minorVersion="3" version="5" xmlns="net:sf:psidev:mi" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="net:sf:psidev:mi http://psidev.sourceforge.net/mi/rel25/src/MIF253.xsd">
+     <entry>
+       <source releaseDate="2007-01-12">
+         <names>
+           <shortLabel>European Bioinformatics Institute</shortLabel>
+         </names>
+         <bibref>
+           <xref>
+             <primaryRef db="pubmed" dbAc="MI:0446" id="14681455" refType="primary-reference" refTypeAc="MI:0358"/>
+           </xref>
+         </bibref>
+         <xref>
+           <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0469" refType="primary-reference" refTypeAc="MI:0358"/>
+         </xref>
+         <attributeList>
+           <attribute name="postalAddress">Wellcome Trust Genome Campus, Hinxton, Cambridge, CB10 1SD, United Kingdom</attribute>
+           <attribute name="url">http://www.ebi.ac.uk</attribute>
+         </attributeList>
+       </source>
+       <experimentList>
+         <experimentDescription id="2">
+           <names>
+             <shortLabel>aliverti-1994-3</shortLabel>
+             <fullName>Involvement of lysine-88 of spinach ferredoxin-NADP+ reductase in the interaction with ferredoxin.</fullName>
+           </names>
+           <bibref>
+             <xref>
+               <primaryRef db="pubmed" dbAc="MI:0446" id="8174709" refType="primary-reference" refTypeAc="MI:0358"/>
+             </xref>
+           </bibref>
+           <xref>
+             <primaryRef db="intact" dbAc="MI:0469" id="EBI-865258" secondary="aliverti-1994-3"/>
+             <secondaryRef db="newt" dbAc="MI:0247" id="9796" refType="target-species" secondary="horse"/>
+             <secondaryRef db="newt" dbAc="MI:0247" id="3562" refType="target-species" secondary="spiol"/>
+           </xref>
+           <hostOrganismList>
+             <hostOrganism ncbiTaxId="-1">
+               <names>
+                 <shortLabel>in vitro</shortLabel>
+               </names>
+             </hostOrganism>
+           </hostOrganismList>
+           <interactionDetectionMethod>
+             <names>
+               <shortLabel>enzymatic study</shortLabel>
+               <fullName>enzymatic study</fullName>
+             </names>
+             <xref>
+               <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0415" refType="identity" refTypeAc="MI:0356"/>
+               <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+             </xref>
+           </interactionDetectionMethod>
+           <participantIdentificationMethod>
+             <names>
+               <shortLabel>predetermined</shortLabel>
+               <fullName>predetermined participant</fullName>
+             </names>
+             <xref>
+               <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0396" refType="identity" refTypeAc="MI:0356"/>
+               <secondaryRef db="pubmed" dbAc="MI:0446" id="7940758" refType="go-definition-ref" refTypeAc="MI:0242"/>
+               <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+             </xref>
+           </participantIdentificationMethod>
+           <attributeList>
+             <attribute name="author-list">Aliverti A., Corrado ME., Zanetti G.</attribute>
+             <attribute name="figure legend">table 1, table 2</attribute>
+             <attribute name="exp-modification">NADPH ferredoxin dependant cytochrome c reductase activity of FNR.</attribute>
+             <attribute name="dataset">Cyanobacteria - Interaction dataset based on Cyanobacteria proteins and related species</attribute>
+             <attribute name="publication-year">1994</attribute>
+             <attribute name="journal">FEBS Lett. (0014-5793)</attribute>
+           </attributeList>
+         </experimentDescription>
+       </experimentList>
+       <interactorList>
+         <interactor id="4">
+           <names>
+             <shortLabel>fer1_spiol</shortLabel>
+             <fullName>Ferredoxin-1, chloroplast precursor</fullName>
+             <alias type="gene name" typeAc="MI:0301">PETF</alias>
+           </names>
+           <xref>
+             <primaryRef db="uniprotkb" dbAc="MI:0486" id="P00221" refType="identity" refTypeAc="MI:0356" secondary="fer1_spiol" version="SP_56"/>
+             <secondaryRef db="interpro" dbAc="MI:0449" id="IPR006057" secondary="2Fe2S"/>
+             <secondaryRef db="interpro" dbAc="MI:0449" id="IPR006058" secondary="2Fe2S_fd_BS"/>
+             <secondaryRef db="interpro" dbAc="MI:0449" id="IPR010241" secondary="Fdx_plant"/>
+             <secondaryRef db="interpro" dbAc="MI:0449" id="IPR001041" secondary="Ferredoxin"/>
+             <secondaryRef db="interpro" dbAc="MI:0449" id="IPR012675" secondary="Ferredoxin_fold"/>
+             <secondaryRef db="intact" dbAc="MI:0469" id="EBI-864933" secondary="fer1_spiol"/>
+           </xref>
+           <interactorType>
+             <names>
+               <shortLabel>protein</shortLabel>
+               <fullName>protein</fullName>
+             </names>
+             <xref>
+               <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0326" refType="identity" refTypeAc="MI:0356"/>
+               <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+               <secondaryRef db="so" dbAc="MI:0601" id="SO:0000358" refType="identity" refTypeAc="MI:0356"/>
+             </xref>
+           </interactorType>
+           <organism ncbiTaxId="3562">
+             <names>
+               <shortLabel>spiol</shortLabel>
+               <fullName>Spinacia oleracea</fullName>
+             </names>
+           </organism>
+           <sequence>MAATTTTMMGMATTFVPKPQAPPMMAALPSNTGRSLFGLKTGSRGGRMTMAAYKVTLVTPTGNVEFQCPDDVYILDAAEEEGIDLPYSCRAGSCSSCAGKLKTGSLNQDDQSFLDDDQIDEGWVLTCAAYPVSDVTIETHKEEELTA</sequence>
+         </interactor>
+         <interactor id="6">
+           <names>
+             <shortLabel>cyc_horse</shortLabel>
+             <fullName>Cytochrome c</fullName>
+             <alias type="gene name" typeAc="MI:0301">CYCS</alias>
+             <alias type="gene name synonym" typeAc="MI:0302">CYC</alias>
+           </names>
+           <xref>
+             <primaryRef db="uniprotkb" dbAc="MI:0486" id="P00004" refType="identity" refTypeAc="MI:0356" secondary="cyc_horse" version="SP_59"/>
+             <secondaryRef db="go" dbAc="MI:0448" id="GO:0005829" secondary="C:cytosol"/>
+             <secondaryRef db="go" dbAc="MI:0448" id="GO:0005758" secondary="C:mitochondrial intermembrane "/>
+             <secondaryRef db="go" dbAc="MI:0448" id="GO:0045155" secondary="F:electron transporter, transf"/>
+             <secondaryRef db="go" dbAc="MI:0448" id="GO:0008635" secondary="P:caspase activation via cytoc"/>
+             <secondaryRef db="go" dbAc="MI:0448" id="GO:0045333" secondary="P:cellular respiration"/>
+             <secondaryRef db="go" dbAc="MI:0448" id="GO:0006309" secondary="P:DNA fragmentation during apo"/>
+             <secondaryRef db="interpro" dbAc="MI:0449" id="IPR009056" secondary="Cyt_c_monohaem"/>
+             <secondaryRef db="interpro" dbAc="MI:0449" id="IPR003088" secondary="Cyt_CI"/>
+             <secondaryRef db="interpro" dbAc="MI:0449" id="IPR002327" secondary="Cyt_CIAB"/>
+             <secondaryRef db="interpro" dbAc="MI:0449" id="IPR012125" secondary="Cytc"/>
+             <secondaryRef db="interpro" dbAc="MI:0449" id="IPR012282" secondary="Cytochrome_c_R"/>
+             <secondaryRef db="intact" dbAc="MI:0469" id="EBI-865260" secondary="cyc_horse"/>
+           </xref>
+           <interactorType>
+             <names>
+               <shortLabel>protein</shortLabel>
+               <fullName>protein</fullName>
+             </names>
+             <xref>
+               <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0326" refType="identity" refTypeAc="MI:0356"/>
+               <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+               <secondaryRef db="so" dbAc="MI:0601" id="SO:0000358" refType="identity" refTypeAc="MI:0356"/>
+             </xref>
+           </interactorType>
+           <organism ncbiTaxId="9796">
+             <names>
+               <shortLabel>horse</shortLabel>
+               <fullName>Equus caballus</fullName>
+             </names>
+           </organism>
+           <sequence>GDVEKGKKIFVQKCAQCHTVEKGGKHKTGPNLHGLFGRKTGQAPGFTYTDANKNKGITWKEETLMEYLENPKKYIPGTKMIFAGIKKKTEREDLIAYLKKATNE</sequence>
+         </interactor>
+         <interactor id="8">
+           <names>
+             <shortLabel>fenr_spiol</shortLabel>
+             <fullName>Ferredoxin--NADP reductase, chloroplast precursor</fullName>
+             <alias type="gene name" typeAc="MI:0301">PETH</alias>
+           </names>
+           <xref>
+             <primaryRef db="uniprotkb" dbAc="MI:0486" id="P00455" refType="identity" refTypeAc="MI:0356" secondary="fenr_spiol" version="SP_59"/>
+             <secondaryRef db="interpro" dbAc="MI:0449" id="IPR001709" secondary="FPN_cyt_redctse"/>
+             <secondaryRef db="interpro" dbAc="MI:0449" id="IPR012146" secondary="Frd-NADP+_RD"/>
+             <secondaryRef db="interpro" dbAc="MI:0449" id="IPR001433" secondary="Oxred_FAD_NAD_bd"/>
+             <secondaryRef db="intact" dbAc="MI:0469" id="EBI-865079" secondary="fenr_spiol"/>
+           </xref>
+           <interactorType>
+             <names>
+               <shortLabel>protein</shortLabel>
+               <fullName>protein</fullName>
+             </names>
+             <xref>
+               <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0326" refType="identity" refTypeAc="MI:0356"/>
+               <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+               <secondaryRef db="so" dbAc="MI:0601" id="SO:0000358" refType="identity" refTypeAc="MI:0356"/>
+             </xref>
+           </interactorType>
+           <organism ncbiTaxId="3562">
+             <names>
+               <shortLabel>spiol</shortLabel>
+               <fullName>Spinacia oleracea</fullName>
+             </names>
+           </organism>
+           <sequence>MTTAVTAAVSFPSTKTTSLSARSSSVISPDKISYKKVPLYYRNVSATGKMGPIRAQIASDVEAPPPAPAKVEKHSKKMEEGITVNKFKPKTPYVGRCLLNTKITGDDAPGETWHMVFSHEGEIPYREGQSVGVIPDGEDKNGKPHKLRLYSIASSALGDFGDAKSVSLCVKRLIYTNDAGETIKGVCSNFLCDLKPGAEVKLTGPVGKEMLMPKDPNATIIMLGTGTGIAPFRSFLWKMFFEKHDDYKFNGLAWLFLGVPTSSSLLYKEEFEKMKEKAPDNFRLDFAVSREQTNEKGEKMYIQTRMAQYAVELWEMLKKDNTYFYMCGLKGMEKGIDDIMVSLAAAEGIDWIEYKRQLKKAEQWNVEVY</sequence>
+         </interactor>
+       </interactorList>
+       <interactionList>
+         <interaction id="1">
+           <names>
+             <shortLabel>peth-petf-5</shortLabel>
+             <fullName>NADPH ferredoxin dependant cytochrome c reductase activity of FNR</fullName>
+           </names>
+           <xref>
+             <primaryRef db="intact" dbAc="MI:0469" id="EBI-865304" secondary="peth-petf-5"/>
+           </xref>
+           <experimentList>
+             <experimentRef>2</experimentRef>
+           </experimentList>
+           <participantList>
+             <participant id="3">
+               <interactorRef>4</interactorRef>
+               <biologicalRole>
+                 <names>
+                   <shortLabel>ancillary</shortLabel>
+                   <fullName>ancillary</fullName>
+                 </names>
+                 <xref>
+                   <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0684" refType="identity" refTypeAc="MI:0356"/>
+                   <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+                 </xref>
+               </biologicalRole>
+               <experimentalRoleList>
+                 <experimentalRole>
+                   <names>
+                     <shortLabel>ancillary</shortLabel>
+                     <fullName>ancillary</fullName>
+                   </names>
+                   <xref>
+                     <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0684" refType="identity" refTypeAc="MI:0356"/>
+                     <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+                   </xref>
+                 </experimentalRole>
+               </experimentalRoleList>
+               <hostOrganismList>
+                 <hostOrganism ncbiTaxId="3562">
+                   <names>
+                     <shortLabel>spiol</shortLabel>
+                     <fullName>Spinacia oleracea</fullName>
+                   </names>
+                 </hostOrganism>
+               </hostOrganismList>
+             </participant>
+             <participant id="5">
+               <interactorRef>6</interactorRef>
+               <biologicalRole>
+                 <names>
+                   <shortLabel>enzyme target</shortLabel>
+                   <fullName>enzyme target</fullName>
+                   <alias>substrate</alias>
+                 </names>
+                 <xref>
+                   <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0502" refType="identity" refTypeAc="MI:0356"/>
+                   <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+                 </xref>
+               </biologicalRole>
+               <experimentalRoleList>
+                 <experimentalRole>
+                   <names>
+                     <shortLabel>neutral component</shortLabel>
+                     <fullName>neutral component</fullName>
+                   </names>
+                   <xref>
+                     <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0497" refType="identity" refTypeAc="MI:0356"/>
+                     <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+                   </xref>
+                 </experimentalRole>
+               </experimentalRoleList>
+               <hostOrganismList>
+                 <hostOrganism ncbiTaxId="9796">
+                   <names>
+                     <shortLabel>horse</shortLabel>
+                     <fullName>Equus caballus</fullName>
+                   </names>
+                 </hostOrganism>
+               </hostOrganismList>
+             </participant>
+             <participant id="7">
+               <interactorRef>8</interactorRef>
+               <biologicalRole>
+                 <names>
+                   <shortLabel>enzyme</shortLabel>
+                   <fullName>enzyme</fullName>
+                 </names>
+                 <xref>
+                   <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0501" refType="identity" refTypeAc="MI:0356"/>
+                   <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+                 </xref>
+               </biologicalRole>
+               <experimentalRoleList>
+                 <experimentalRole>
+                   <names>
+                     <shortLabel>neutral component</shortLabel>
+                     <fullName>neutral component</fullName>
+                   </names>
+                   <xref>
+                     <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0497" refType="identity" refTypeAc="MI:0356"/>
+                     <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+                   </xref>
+                 </experimentalRole>
+               </experimentalRoleList>
+               <featureList>
+                 <feature id="9">
+                   <names>
+                     <shortLabel>lys88gln</shortLabel>
+                   </names>
+                   <featureType>
+                     <names>
+                       <shortLabel>mutation decreasing</shortLabel>
+                       <fullName>mutation decreasing interaction</fullName>
+                       <alias>hotspot</alias>
+                     </names>
+                     <xref>
+                       <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0119" refType="identity" refTypeAc="MI:0356"/>
+                       <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+                     </xref>
+                   </featureType>
+                   <featureRangeList>
+                     <featureRange>
+                       <startStatus>
+                         <names>
+                           <shortLabel>certain</shortLabel>
+                         </names>
+                         <xref>
+                           <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0335" refType="identity" refTypeAc="MI:0356"/>
+                         </xref>
+                       </startStatus>
+                       <begin position="88"/>
+                       <endStatus>
+                         <names>
+                           <shortLabel>certain</shortLabel>
+                         </names>
+                         <xref>
+                           <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0335" refType="identity" refTypeAc="MI:0356"/>
+                         </xref>
+                       </endStatus>
+                       <end position="88"/>
+                     </featureRange>
+                   </featureRangeList>
+                 </feature>
+               </featureList>
+               <hostOrganismList>
+                 <hostOrganism ncbiTaxId="3562">
+                   <names>
+                     <shortLabel>spiol</shortLabel>
+                     <fullName>Spinacia oleracea</fullName>
+                   </names>
+                 </hostOrganism>
+               </hostOrganismList>
+             </participant>
+           </participantList>
+           <interactionType>
+             <names>
+               <shortLabel>physical interaction</shortLabel>
+               <fullName>physical interaction</fullName>
+               <alias>aggregation</alias>
+             </names>
+             <xref>
+               <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0218" refType="identity" refTypeAc="MI:0356"/>
+               <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+             </xref>
+           </interactionType>
+           <attributeList>
+             <attribute name="kinetics">The kcat is deduced by varing both NADPH and Ferredoxin consnetration and fitting the data to a &apos;ping-pong mechanism&apos;.The kcat for the wild type protein is 3800 U/FAD, and the kcat is 2200 for the K88Q mutant.</attribute>
+             <attribute name="stimulation">ferredoxin is necessary</attribute>
+             <attribute name="kd">4.0E-7</attribute>
+           </attributeList>
+         </interaction>
+       </interactionList>
+     </entry>
+   </entrySet>
