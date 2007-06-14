@@ -45,7 +45,7 @@ $verbose = 1 if $DEBUG;
 
 ok 1;
 
-my $g = new Bio::Network::ProteinNet;
+my $g = Bio::Network::ProteinNet->new();
 
 my $seq1 = Bio::Seq->new(-seq => "aaaaaaa");
 my $seq2 = Bio::Seq->new(-seq => "ttttttt");
@@ -100,7 +100,7 @@ ok $interx->primary_id, "C";
 #
 my $comment = Bio::Annotation::Comment->new;
 $comment->text("Reliable");
-my $coll = new Bio::Annotation::Collection;
+my $coll = Bio::Annotation::Collection->new();
 $coll->add_Annotation('comment',$comment);
 ok $interx->annotation($coll);
 my @anns = $coll->get_Annotations('comment');
