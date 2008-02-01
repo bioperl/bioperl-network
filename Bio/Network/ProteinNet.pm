@@ -25,7 +25,6 @@ Bio::Network::ProteinNet - a representation of a protein interaction graph.
         print $protein->display_id," ";
       }
     }
-    print "\n";
   }
 
 =head1 Perl Graph module
@@ -334,8 +333,8 @@ web:
 
 =head1 AUTHORS
 
-Richard Adams richard.adams@ed.ac.uk
 Brian Osborne bosborne at alum.mit.edu
+Richard Adams richard.adams@ed.ac.uk
 
 Maintained by Brian Osborne
 
@@ -1177,6 +1176,5 @@ sub next_edge {
 =cut
 
 sub next_node {
-
 
 }

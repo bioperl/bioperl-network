@@ -71,8 +71,8 @@ web:
 
 =head1 AUTHORS
 
-Richard Adams richard.adams@ed.ac.uk
 Brian Osborne bosborne at alum.mit.edu
+Richard Adams richard.adams@ed.ac.uk
 
 =cut
 
@@ -217,3 +217,5 @@ sub _get_standard_name {
 }
 
 1;
+
+__END__

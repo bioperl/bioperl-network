@@ -228,8 +228,8 @@ web:
 
 =head1 AUTHORS
 
-Richard Adams richard.adams@ed.ac.uk
 Brian Osborne bosborne at alum.mit.edu
+Richard Adams richard.adams@ed.ac.uk
 
 =cut
 

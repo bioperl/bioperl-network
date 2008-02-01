@@ -54,8 +54,8 @@ web:
 
 =head1 AUTHORS
 
-Richard Adams richard.adams@ed.ac.uk
 Brian Osborne bosborne at alum.mit.edu
+Richard Adams richard.adams@ed.ac.uk
 
 Maintained by Brian Osborne
 
@@ -66,8 +66,6 @@ package Bio::Network::Interaction;
 use Bio::Root::Root;
 use Bio::AnnotatableI;
 use Bio::Annotation::Collection;
-#use Bio::IdentifiableI;
-#use Bio::DescribableI;
 
 use vars qw(@ISA);
 
@@ -200,5 +198,7 @@ sub object_id {
 	my ($self,$id) = @_;
 	$id ? $self->primary_id($id) : return $self->primary_id;
 }
+
+1;
 
 __END__
