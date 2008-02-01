@@ -29,20 +29,20 @@ This module parses version 1.0 of PSI MI.
 The following databases provide their data as PSI MI XML:
 
 BIND    L<http://www.bind.ca>
-DIP     L<http://dip.doe-mbi.ucla.edu/>
-HPRD    L<http://www.hprd.org>
+DIP      L<http://dip.doe-mbi.ucla.edu/>
+HPRD   L<http://www.hprd.org>
 IntAct  L<http://www.ebi.ac.uk/intact>
-MINT    L<http://cbm.bio.uniroma2.it/mint/>
+MINT   L<http://cbm.bio.uniroma2.it/mint/>
 
 Each of these databases will call PSI format by some different name. For
 example, PSI MI from DIP comes in files with the suffix "mif".
 
-Documentation for PSI XML can be found at L<http://psidev.sourceforge.net>.
+Documentation for PSI XML can be found at L<http://www.psidev.info>.
 
 =head2 Version
 
 This module supports a subset of the fields described in PSI MI version 1.0
-(L<http://psidev.sourceforge.net/mi/rel25/>). The NODE DATA section below
+(L<http://www.psidev.info/index.php?q=node/88>). The NODE DATA section below
 describes which fields are currently parsed into ProteinNet networks.
 
 =head2 Notes
