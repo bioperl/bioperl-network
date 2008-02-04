@@ -1,6 +1,6 @@
 # This is -*-Perl-*- code#
 # Bioperl Test Harness Script for Modules#
-# $Id: protgraph.t,v 1.1 2004/03/13 23:45:32 radams Exp
+# $Id$
 
 use vars qw($NUMTESTS $DEBUG $ERROR);
 use strict;
@@ -46,7 +46,7 @@ $verbose = 1 if $DEBUG;
 ok 1;
 
 #
-# PSI XML from HPRD
+# PSI XML from IntAct
 #
 ok my $io = Bio::Network::IO->new
   (-format => 'psi25',
@@ -55,6 +55,8 @@ ok my $g1 = $io->next_network();
 
 __END__
 
+ok $g1->edge_count, 3;
+ok $g1->node_count, 4;
 
 #
 # PSI XML from DIP
