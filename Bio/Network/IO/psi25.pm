@@ -1,4 +1,4 @@
-# $Id: psi10.pm 14461 2008-02-01 17:29:35Z bosborne $
+# $Id: psi25.pm 14461 2008-02-01 17:29:35Z bosborne $
 #
 # BioPerl module for Bio::Network::IO::psi25
 #
@@ -20,9 +20,9 @@ Do not use this module directly, use Bio::Network::IO:
 
 =head1 DESCRIPTION
 
-PSI MI (Protein Standards Initiative Molecular Interaction) XML is a format 
-to describe protein-protein interactions and interaction networks. 
-This module parses version 2.5 of PSI MI.
+PSI MI (Protein Standards Initiative Molecular Interaction) XML is a 
+format to describe protein-protein interactions and interaction 
+networks. This module parses version 2.5 of PSI MI.
 
 =head2 Databases
 
