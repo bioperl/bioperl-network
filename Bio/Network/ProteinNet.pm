@@ -345,13 +345,10 @@ module written by Nat Goodman.
 
 package Bio::Network::ProteinNet;
 use strict;
-use Bio::Root::Root;
 use Graph 0.80;
 use Bio::Network::Interaction;
 use Bio::Root::Root;
-
 use vars qw($GRAPH_ARRAY_INDEX @ISA);
-
 @ISA = qw( Graph::Undirected Bio::Root::Root );
 
 # A Graph object is an array reference, therefore we need
@@ -913,7 +910,7 @@ sub unconnected_nodes {
  Returns   : An array or a count of the array of nodes that will fragment 
              the graph if deleted. 
  Notes     : This method is currently broken due to bugs in Graph v. .69
-
+             and later
 =cut
 
 sub articulation_points {

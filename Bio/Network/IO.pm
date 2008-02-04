@@ -78,10 +78,8 @@ Richard Adams richard.adams@ed.ac.uk
 
 package Bio::Network::IO;
 use strict;
-use vars qw(@ISA %DBNAMES);
-use Bio::Root::IO;
-
-@ISA = qw(Bio::Root::IO);
+use base 'Bio::Root::IO';
+use vars qw(%DBNAMES);
 
 # these values are used to standardize database names
 %DBNAMES = (

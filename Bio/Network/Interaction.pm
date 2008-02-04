@@ -63,13 +63,8 @@ Maintained by Brian Osborne
 
 use strict;
 package Bio::Network::Interaction;
-use Bio::Root::Root;
-use Bio::AnnotatableI;
-use Bio::Annotation::Collection;
+use base qw(Bio::Root::Root Bio::AnnotatableI Bio::Annotation::Collection);
 
-use vars qw(@ISA);
-
-@ISA = qw( Bio::Root::Root Bio::AnnotatableI);
 
 =head2 new
 

@@ -61,9 +61,7 @@ Maintained by Brian Osborne
 
 use strict;
 package Bio::Network::Edge;
-use Bio::Root::Root;
-use vars qw(@ISA);
-@ISA = qw(Bio::Root::Root);
+use base 'Bio::Root::Root';
 
 =head2 new
 
