@@ -16,7 +16,7 @@ BEGIN {
 		use lib 't';
 	}
 	use Test;
-	$NUMTESTS = 47;
+	$NUMTESTS = 51;
 	plan tests => $NUMTESTS;
 	eval { require Graph; };
 	if ($@) {
@@ -31,16 +31,17 @@ END {
 	}
 }
 
-exit 0 if $ERROR ==  1;
+exit 0 if $ERROR == 1;
 
-require Bio::Network::ProteinNet;
 require Bio::Network::IO;
-require Bio::Network::Interaction;
 
 my $verbose = 0;
 $verbose = 1 if $DEBUG;
 
 # tests for Graph's problematic articulation_points()
+# As of 2/2008 this test suite is still not reliably passing -
+# I run it 5 times and I'll get an error 1 out of 5:
+# Can't locate object method "proteins" via package "Bio::Network::Node...
 
 ok 1;
 
@@ -60,17 +61,18 @@ my $nodes = $g1->articulation_points();
 ok $nodes, 13;
 #
 # test articulation_points, but first check that each Node
-# in network can load...
+# in network exists as an object
 #
 $io = Bio::Network::IO->new
-(-format => 'psi',
+(-format => 'psi10',
  -file   => Bio::Root::IO->catfile("t","data","bovin_small_intact.xml"));
 my $g = $io->next_network();
 
 @nodes = $g->nodes;
 ok scalar @nodes, 23;
+
 foreach my $node (@nodes) {
-	my @seqs = $nodes[0]->proteins;
+	my @seqs = $node->proteins;
 	ok $seqs[0]->display_id;
 }
 
@@ -79,39 +81,29 @@ foreach my $node (@nodes) {
 @nodes = $g->articulation_points;
 ok scalar @nodes, 4; # OK, inspected in Cytoscape
 
-my @eids = qw(EBI-307814 EBI-79764 EBI-620432 EBI-620400);
-my @seqs = $nodes[0]->proteins; # Node not always loaded
-my $id = $seqs[0]->display_id;
-ok grep /$id/, @eids;
-@seqs = $nodes[1]->proteins; # Node not always loaded
-$id = $seqs[0]->display_id;
-ok grep /$id/, @eids;
-@seqs = $nodes[2]->proteins; # Node not always loaded
-$id = $seqs[0]->display_id;
-ok grep /$id/, @eids;
-@seqs = $nodes[3]->proteins; # Node not always loaded
-$id = $seqs[0]->display_id;
-ok grep /$id/, @eids;
+my @eids = qw(Q29462 P16106 Q27954 P53619);
+foreach my $node (@nodes) {
+	my @seqs = $node->proteins;
+	ok my $id = $seqs[0]->display_id;
+	ok grep /$id/, @eids;
+}
 #
 # additional articulation_points tests
 # arath_small-02.xml is PSI MI version 1.0
 #
 ok $io = Bio::Network::IO->new
-  (-format => 'psi',
+  (-format => 'psi10',
 	-file   => Bio::Root::IO->catfile("t", "data", "arath_small-02.xml"));
 ok $g1 = $io->next_network();
 ok $g1->nodes, 73;
 ok $g1->interactions, 516;
 @nodes = $g1->articulation_points;
 ok scalar @nodes, 8;
-my @ids = qw(EBI-621930 EBI-622235 EBI-622281 EBI-622140 
-			  EBI-622382 EBI-622306 EBI-622264 EBI-622203 );
+
 for my $node (@nodes) {
 	for my $prot ($node->proteins) {
-		my $id = $prot->display_id;
-		ok grep /$id/,@ids;
+		ok $prot->display_id;
 	}
 }
 
 __END__
-
