@@ -16,7 +16,7 @@ BEGIN {
 		use lib 't';
 	}
 	use Test;
-	$NUMTESTS  = 19;
+	$NUMTESTS  = 20;
 	plan tests => $NUMTESTS;
 	eval { require Graph::Undirected; };
 	if ( $@ ) {
@@ -76,19 +76,18 @@ ok $vs[0]->add($str);
 my $seq = $g->random_vertex; # OK
 ok $seq->add($str);
 
-my @rts = $g->articulation_points;
-ok @rts;
-
 my $t = Graph::Traversal::DFS->new($g);
 $t->dfs;
 @vs = $t->seen;
+ok scalar @vs, 4;
 for my $seq (@vs) {
 	ok $seq->add($str); # NOT OK in version .73
 }
 
 @vs = $g->articulation_points; 
-ok $vs[0]->add($str); # OK in version .70
 ok scalar @vs, 2;
+ok $vs[0]->add($str); # OK in version .70
+ok $vs[1]->add($str);
 
 my @cc = $g->connected_components;
 for my $ref (@cc) {
