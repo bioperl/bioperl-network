@@ -1,6 +1,6 @@
 # This is -*-Perl-*- code#
 # Bioperl Test Harness Script for Modules#
-# $Id: protgraph.t,v 1.1 2004/03/13 23:45:32 radams Exp
+# $Id$
 
 use vars qw($NUMTESTS $DEBUG $ERROR);
 use strict;
