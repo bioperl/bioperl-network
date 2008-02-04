@@ -35,13 +35,14 @@ attribute of an edge, and there can be 1 or more interactions per edge.
 An interaction can be thought of as one experiment or one experimental 
 observation. 
 
-The formats that can be parsed are DIP (tab-delimited) and PSI MI (XML). 
-Capabilities include the ability to merge networks, select nodes and
-interactions by identifier, add and delete components (nodes,
-interactions, and edges), count all components of a certain type, get
-all components of a certain type, and get subgraphs. Then you have all
-the functionality of Perl's Graph in addition such as traversal using
-different algorithms, getting interior and exterior nodes, and getting all 
+The formats that can be parsed are DIP (tab-delimited) and PSI MI
+(XML), either version 1 or version 2.5. Capabilities include the
+ability to merge networks, select nodes and interactions by
+identifier, add and delete components (nodes, interactions, and
+edges), count all components of a certain type, get all components of
+a certain type, and get subgraphs. Then you have all the functionality
+of Perl's Graph in addition such as traversal using different
+algorithms, getting interior and exterior nodes, and getting all  
 connected subgraphs. Graph is quite rich in functionality, this list
 is only a small subset of available methods, see the documentation 
 for Graph for more detail (http://search.cpan.org/~jhi/Graph/lib/Graph.pod).
