@@ -93,7 +93,7 @@ use vars qw(%DBNAMES);
 
  Name       : new
  Usage      : $io = Bio::Network::IO->new(-file => 'myfile.xml', 
-                                          -format => 'psi');
+                                          -format => 'psi25');
  Returns    : A Bio::Network::IO stream initialised to the appropriate format.
  Args       : Named parameters: 
               -file      => $filename
