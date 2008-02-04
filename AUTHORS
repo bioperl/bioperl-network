@@ -1,6 +1,10 @@
 $Id: AUTHORS,v 1.3 2006-11-08 10:59:13 sendu Exp $
 
+Maintained by Brian Osborne
+
 bioperl-network Authors
+
+* Brian Osborne <bosborne at alum.mit.edu>
 
 * Richard Adams <Richard.Adams at ed.ac.uk>
 
@@ -8,4 +12,3 @@ bioperl-network Authors
 
 * Nat Goodman
 
-* Brian Osborne <bosborne at alum.mit.edu>
