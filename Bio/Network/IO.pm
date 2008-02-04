@@ -16,7 +16,7 @@ and creating networks from this data.
 
   # Read protein interaction data in some format
   my $io = Bio::Network::IO->new(-file => 'bovine.xml',
-                                 -format => 'psi' );
+                                 -format => 'psi25' );
   my $network = $io->next_network;
 
 =head1  DESCRIPTION
@@ -45,7 +45,7 @@ UNIMPLEMENTED.
 
 =head1 REQUIREMENTS
 
-To read or write from PSI XML you will need the XML::Twig module, 
+To read from PSI XML you will need the XML::Twig module, 
 available from CPAN.
 
 =head1 FEEDBACK
@@ -100,6 +100,7 @@ use vars qw(%DBNAMES);
               -format    => format
 				  -threshold => a confidence score for the interaction, optional
               -source    => optional database name (e.g. "intact")
+              -verbose   => optional, set to 1 to get commentary
 =cut
 
 sub new {
@@ -150,11 +151,40 @@ sub write_network {
    $self->throw("Sorry, you can't write from a generic Bio::NetworkIO object.");
 }
 
+=head2 threshold
+
+ Name       : get or set a threshold
+ Usage      : $io->threshold($val)
+ Returns    : The threshold
+ Args       : A number or none
+
+=cut
+
+sub threshold {
+   my $self = shift;
+   $self->{_th} = @_ if @_;
+   return $self->{_th};
+}
+
+=head2 verbose
+
+ Name       : get or set verbosity
+ Usage      : $io->verbose(1)
+ Returns    : The verbosity setting
+ Args       : 1 or none
+
+=cut
+
+sub verbose {
+   my $self = shift;
+   $self->{_verbose} = @_ if @_;
+   return $self->{_verbose};
+}
 
 =head2 _load_format_module
 
  Title   : _load_format_module
- Usage   : *INTERNAL Bio::Network::IO stuff*
+ Usage   : INTERNAL Bio::Network::IO stuff
  Function: Loads up (like use) a module at run time on demand
  Returns :
  Args    :
@@ -193,8 +223,9 @@ END
 sub _initialize_io {
 	my ($self, @args) = @_;
 	$self->SUPER::_initialize_io(@args);
-	my ($th) = $self->_rearrange( [qw(THRESHOLD)], @args);
+	my ($th,$verbose) = $self->_rearrange( [qw(THRESHOLD VERBOSE)], @args);
 	$self->{'_th'} = $th;
+	$self->{'_verbose'} = $verbose;
 	return $self;
 }
 

@@ -13,7 +13,7 @@ Bio::Network::ProteinNet - a representation of a protein interaction graph.
 
   # Read in from file
   my $graphio = Bio::Network::IO->new(-file   => 'human.xml',
-                                      -format => 'psi');
+                                      -format => 'psi25');
   my $graph = $graphio->next_network();
 
   my @edges = $gr->edges;

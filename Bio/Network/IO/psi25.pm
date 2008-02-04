@@ -248,10 +248,10 @@ use Bio::Annotation::OntologyTerm;
 use Bio::Annotation::Collection;
 use Bio::Annotation::Comment;
 use Bio::Annotation::Reference;
-use Bio::Annotation::SimpleValue;
+# use Bio::Annotation::SimpleValue;
 # use Bio::Network::IO::psi::intact;
 
-use vars qw( @ISA %species $net $fac );
+use vars qw( @ISA %species $net $fac $verbose );
 @ISA = qw(Bio::Network::IO Bio::Root::Root );
 
 BEGIN {
@@ -271,7 +271,7 @@ BEGIN {
 sub next_network {
 	my $self = shift;
 	$net = Bio::Network::ProteinNet->new(refvertexed => 1);
-
+	$verbose = $self->verbose;
 	# the tag in the handler is an XML field, the value is
 	# the function called when that field is encountered 
 	my $t = XML::Twig->new(TwigHandlers => {
@@ -302,9 +302,9 @@ sub _addInteractor {
 	my $org = $pi->first_child('organism');
 
 	eval { $taxid = $org->att('ncbiTaxId'); };
-	if ( $@ ){
+	if ($@) {
 		print "No organism for interactor " . 
-		  $pi->first_child('names')->first_child('fullName')->text . "\n";
+		  $pi->first_child('names')->first_child('fullName')->text . "\n" if $verbose;
 		$common = $full = $taxid = $nullVal;
 	} elsif ( !exists($species{$taxid}) ) {
 		# Make new species object if doesn't already exist
@@ -355,10 +355,10 @@ sub _addInteractor {
 	};
 	if ($@) {
 		print "No fullName for interactor " .
-		  $pi->first_child('names')->first_child('shortLabel')->text . "\n";
+		  $pi->first_child('names')->first_child('shortLabel')->text . "\n" if $verbose;
 		$desc = $pi->first_child('names')->first_child('shortLabel')->text;
 	}
-	
+
 	# Use ids other than accession_no or primary_id for DBLink annotations
 	my $ac = Bio::Annotation::Collection->new();	
 	for my $db (keys %ids) {
@@ -385,7 +385,7 @@ sub _addInteractor {
 	my $node = Bio::Network::Node->new(-protein => [($prot)]);
 	$net->add_node($node);
 
-	# Add primary identifier and accession to internal id<->node mapping hash
+	# Add primary identifier and acc to internal id <-> node mapping hash
 	$net->add_id_to_node($ids{'psixml'},$node);
 	$net->add_id_to_node($prot->primary_id,$node);
 	$net->add_id_to_node($prot->accession_number,$node);
@@ -405,14 +405,16 @@ sub _addInteractor {
  Purpose  : Adds a new Interaction to a graph
  Usage    : Do not call, called internally by next_network()
  Returns  :
- Notes    : All interactions are made of 2 nodes
-
+ Notes    : All interactions are made of 2 nodes - if there are more
+            or less than 2 then no Interaction object is created
 =cut
 
 sub _addInteraction {
 	my ($twig, $i) = @_;
 
 	my @ints = $i->first_child('participantList')->children;
+	print "Interaction " . $i->first_child('xref')->first_child('primaryRef')->att('id') .
+	  " has " . scalar @ints . " interactors\n" if $verbose;
 
 	# 2 nodes are required
 	if ( scalar @ints == 2 ) {

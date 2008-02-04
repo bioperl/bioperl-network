@@ -131,8 +131,8 @@ sub next_network {
 		# ($node_id1,$node_id2) = $self->_fix_id("DIP",$node_id1,$node_id2);
 
 		## skip if score is below threshold
-		if (defined($self->{'_th'}) && defined($score)) {
-			next unless $score >= $self->{'_th'};
+		if ($self->threshold && defined($score)) {
+			next unless $score >= $self->threshold;
 		}
 
 	   ## build node object if it's a new node, use DIP id
