@@ -167,7 +167,7 @@ ok $g2->get_nodes_by_id('B64'), undef;
 # test subgraph
 #
 $io = Bio::Network::IO->new
-(-format => 'psi',
+(-format => 'psi10',
  -file   => Bio::Root::IO->catfile("t","data","bovin_small_intact.xml"));
 my $g = $io->next_network();
 ok $g->edges, 15;
@@ -251,7 +251,7 @@ ok $ix->weight, 12;
 # test that removing a node removes its edges correctly
 #
 ok $io = Bio::Network::IO->new
-  (-format => 'psi',
+  (-format => 'psi10',
 	-file   => Bio::Root::IO->catfile("t", "data", "sv40_small.xml"));
 ok $g1 = $io->next_network();
 ok $g1->edge_count, 3;
