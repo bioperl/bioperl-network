@@ -83,9 +83,9 @@ ok scalar @nodes, 4; # OK, inspected in Cytoscape
 
 my @eids = qw(Q29462 P16106 Q27954 P53619);
 foreach my $node (@nodes) {
-	my @seqs = $node->proteins;
-	ok my $id = $seqs[0]->display_id;
-	ok grep /$id/, @eids;
+ 	my @seqs = $node->proteins;
+ 	ok my $id = $seqs[0]->display_id;
+ 	ok grep /$id/, @eids;
 }
 #
 # additional articulation_points tests
