@@ -34,16 +34,17 @@ HPRD    L<http://www.hprd.org>
 IntAct  L<http://www.ebi.ac.uk/intact>
 MINT    L<http://cbm.bio.uniroma2.it/mint/>
 
-Each of these databases will call PSI format by some different name. For
-example, PSI MI from DIP comes in files with the suffix "mif".
+Each of these databases will call PSI format by some different name.
+for example, PSI MI from DIP comes in files with the suffix "mif".
 
 Documentation for PSI XML can be found at L<http://www.psidev.info>.
 
 =head2 Version
 
-This module supports a subset of the fields described in PSI MI version 2.5.
-(L<http://www.psidev.info/index.php?q=node/60>). The NODE DATA section below
-describes which fields are currently parsed into ProteinNet networks.
+This module supports a subset of the fields described in PSI MI version 
+2.5. (L<http://www.psidev.info/index.php?q=node/60>). The DATA IN THE NODE
+section below describes which fields are currently parsed into 
+ProteinNet networks.
 
 =head2 Notes
 
@@ -229,12 +230,12 @@ web:
 =head1 AUTHORS
 
 Brian Osborne bosborne at alum.mit.edu
-Richard Adams richard.adams@ed.ac.uk
 
 =cut
 
 package Bio::Network::IO::psi25;
 use strict;
+use base qw(Bio::Network::IO Bio::Root::Root);
 use XML::Twig;
 use Bio::Root::Root;
 use Bio::Seq::SeqFactory;
@@ -244,15 +245,14 @@ use Bio::Network::IO;
 use Bio::Network::Node;
 use Bio::Species;
 use Bio::Annotation::DBLink;
-use Bio::Annotation::OntologyTerm;
 use Bio::Annotation::Collection;
-use Bio::Annotation::Comment;
-use Bio::Annotation::Reference;
-# use Bio::Annotation::SimpleValue;
-# use Bio::Network::IO::psi::intact;
+#use Bio::Annotation::Comment;
+#use Bio::Annotation::Reference;
+#use Bio::Annotation::SimpleValue;
+#use Bio::Network::IO::psi::intact;
+#use Bio::Annotation::OntologyTerm;
 
-use vars qw( @ISA %species $net $fac $verbose );
-@ISA = qw(Bio::Network::IO Bio::Root::Root );
+use vars qw( %species $net $fac $verbose );
 
 BEGIN {
 	$fac = Bio::Seq::SeqFactory->new(-type => 'Bio::Seq::RichSeq');
