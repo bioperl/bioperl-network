@@ -67,111 +67,6 @@ sub find_pm_files {
     $self->_find_file_by_type('pm', 'lib');
 }
 
-# ask what scripts to install (this method is unique to bioperl)
-sub choose_scripts {
-    my $self = shift;
-    
-    # we can offer interactive installation by groups only if we have subdirs
-    # in scripts and no .PLS files there
-    opendir(my $scripts_dir, 'scripts') or die "Can't open directory 'scripts': $!\n";
-    my $int_ok = 0;
-    my @group_dirs;
-    while (my $thing = readdir($scripts_dir)) {
-        next if $thing =~ /^\./;
-        next if $thing eq 'CVS';
-        if ($thing =~ /PLS$|pl$/) {
-            $int_ok = 0;
-            last;
-        }
-        $thing = File::Spec->catfile('scripts', $thing);
-        if (-d $thing) {
-            $int_ok = 1;
-            push(@group_dirs, $thing);
-        }
-    }
-    closedir($scripts_dir);
-    my $question = $int_ok ? "Install [a]ll Bioperl scripts, [n]one, or choose groups [i]nteractively?" : "Install [a]ll Bioperl scripts or [n]one?";
-    
-    my $prompt = $self->prompt($question, 'a');
-    
-    if ($prompt =~ /^[aA]/) {
-        $self->log_info("  - will install all scripts\n");
-        $self->notes(chosen_scripts => 'all');
-    }
-    elsif ($prompt =~ /^[iI]/) {
-        $self->log_info("  - will install interactively:\n");
-        
-        my @chosen_scripts;
-        foreach my $group_dir (@group_dirs) {
-            my $group = File::Basename::basename($group_dir);
-            print "    * group '$group' has:\n";
-            
-            my @script_files = @{$self->rscan_dir($group_dir, qr/\.PLS$|\.pl$/)};
-            foreach my $script_file (@script_files) {
-                my $script = File::Basename::basename($script_file);
-                print "      $script\n";
-            }
-            
-            my $result = $self->prompt("    Install scripts for group '$group'? [y]es [n]o [q]uit", 'n');
-            die if $result =~ /^[qQ]/;
-            if ($result =~ /^[yY]/) {
-                $self->log_info("      + will install group '$group'\n");
-                push(@chosen_scripts, @script_files);
-            }
-            else {
-                $self->log_info("      - will not install group '$group'\n");
-            }
-        }
-        
-        my $chosen_scripts = @chosen_scripts ? join("|", @chosen_scripts) : 'none';
-        
-        $self->notes(chosen_scripts => $chosen_scripts);
-    }
-    else {
-        $self->log_info("  - won't install any scripts\n");
-        $self->notes(chosen_scripts => 'none');
-    }
-    
-    print "\n";
-}
-
-# our version of script_files doesn't take args but just installs those scripts
-# requested by the user after choose_scripts() is called. If it wasn't called,
-# installs all scripts in scripts directory
-sub script_files {
-    my $self = shift;
-    
-    my $chosen_scripts = $self->notes('chosen_scripts');
-    if ($chosen_scripts) {
-        return if $chosen_scripts eq 'none';
-        return { map {$_, 1} split(/\|/, $chosen_scripts) } unless $chosen_scripts eq 'all';
-    }
-    
-    return $_ = { map {$_,1} @{$self->rscan_dir('scripts', qr/\.PLS$|\.pl$/)} };
-}
-
-# process scripts normally, except that we change name from *.PLS to bp_*.pl
-sub process_script_files {
-    my $self = shift;
-    my $files = $self->find_script_files;
-    return unless keys %$files;
-  
-    my $script_dir = File::Spec->catdir($self->blib, 'script');
-    File::Path::mkpath( $script_dir );
-    
-    foreach my $file (keys %$files) {
-        my $result = $self->copy_if_modified($file, $script_dir, 'flatten') or next;
-        $self->fix_shebang_line($result) unless $self->os_type eq 'VMS';
-        $self->make_executable($result);
-        
-        my $final = File::Basename::basename($result);
-        $final =~ s/\.PLS$/\.pl/;                  # change from .PLS to .pl
-        $final =~ s/^/bp_/ unless $final =~ /^bp/; # add the "bp" prefix
-        $final = File::Spec->catfile($script_dir, $final);
-        $self->log_info("$result -> $final\n");
-        File::Copy::move($result, $final) or die "Can't rename '$result' to '$final': $!";
-    }
-}
 
 # extended to handle extra checking types
 sub features {
@@ -693,7 +588,7 @@ sub _construct {
     
     my ($p, $ph) = ($self->{properties}, $self->{phash});
     
-    foreach (qw(manifest_skip post_install_scripts)) {
+    foreach (qw(manifest_skip)) {
         my $file = File::Spec->catfile($self->config_dir, $_);
         $ph->{$_} = Module::Build::Notes->new(file => $file);
         $ph->{$_}->restore if -e $file;
@@ -723,6 +618,7 @@ sub _construct {
     
     return $self;
 }
+
 sub write_config {
     my $self = shift;
     
@@ -739,7 +635,7 @@ sub write_config {
     $self->SUPER::write_config;
     
     # write extra things
-    $self->{phash}{$_}->write() foreach qw(manifest_skip post_install_scripts);
+    $self->{phash}{$_}->write() foreach qw(manifest_skip);
     
     # re-write the prereqs file to keep future versions of CPAN happy
     $self->{properties}->{requires} = $orig_requires;
@@ -822,18 +718,6 @@ sub ACTION_install {
   $self->depends_on('build');
   ExtUtils::Install::install($self->install_map, !$self->quiet, 0, $self->{args}{uninst}||0);
   $self->run_post_install_scripts;
-}
-sub add_post_install_script {
-    my $self = shift;
-    my %files = map {$self->localize_file_path($_), 1} @_;
-    $self->{phash}{post_install_scripts}->write(\%files);
-}
-sub run_post_install_scripts {
-    my $self = shift;
-    my @scripts = keys %{$self->{phash}{post_install_scripts}->read};
-    foreach my $script (@scripts) {
-        $self->run_perl_script($script);
-    }
 }
 
 # for use with auto_features, which should require LWP::UserAgent as one of
@@ -1161,3 +1045,6 @@ sub NEXTKEY {
 }
 
 1;
+
+__END__
+
