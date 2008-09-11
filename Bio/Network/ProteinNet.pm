@@ -106,7 +106,7 @@ be retrieved through their identifiers:
   # Retrieve all interactions
   my @interx = $graph->interactions;
 
-  # Let's get interactions above a threshold confidence score.
+  # Get interactions above a threshold confidence score
   for my $interx (@interx) {
 	 if ($interx->weight > 0.6) {
 		 print $interx->primary_id, "\t", $interx->weight, "\n";
@@ -153,12 +153,12 @@ A simple approach would look something like this:
 =head1 DESCRIPTION
 
 A ProteinNet is a representation of a protein interaction network.
-Its functionality comes from the L<Graph> of Perl and from BioPerl,
+Its functionality comes from the L<Graph> module of Perl and from BioPerl,
 the nodes or vertices in the network are Sequence objects.
 
 =head2 Nodes
 
-A node is one or more BioPerl sequence object, a L<Bio::Seq> or 
+A node is one or more BioPerl sequence objects, a L<Bio::Seq> or 
 L<Bio::Seq::RichSeq> object. Essentially the graph can use any objects 
 that implement L<Bio::AnnotatableI> and L<Bio::IdentifiableI> interfaces 
 since these objects hold useful identifiers. This is relevant since the 
@@ -183,8 +183,9 @@ equivalent to one experiment or one experimental observation.
 =head1 FOR DEVELOPERS
 
 In this module, the nodes or vertexes are represented by L<Bio::Seq>
-objects containing all possible database identifiers but no sequence, as
-parsed from the interaction files.
+objects containing database identifiers but usually
+without sequence, since the data is parsed from protein-protein
+interaction data.
 
 Interactions should be L<Bio::Network::Interaction> objects, which are 
 L<Bio::IdentifiableI> implementing objects. At present Interactions only 
@@ -197,7 +198,7 @@ structures of Graph itself:
 
 =item _id_map
 
-Look-up hash ('_id_map') for finding a node by any of its ids. The keys
+Look-up hash ('_id_map') for finding a node using any of its ids. The keys
 are standard identifiers (e.g. "GenBank:A12345") and the values are 
 memory addresses used by Graph (e.g. "Bio::Network::Node=HASH(0x1bc53e4)"). 
 
@@ -211,7 +212,7 @@ Interactions (e.g. "Bio::Network::Interaction=HASH(0x1bc46f2)").
 =back
 
 The function of these hashes is either to facilitate fast lookups or 
-cache data temporarily.
+to cache data.
 
 =head1 API CHANGES
 
@@ -918,7 +919,6 @@ sub articulation_points {
  	my @nodes = $self->SUPER::articulation_points; 
  	wantarray ? @nodes : scalar @nodes;
 }
- 
 
 =head2 is_articulation_point
 
