@@ -845,6 +845,40 @@ sub remove_nodes {
 	$g;
 }
 
+=head2 get_random_edge
+
+ Name      : get_random_edge
+ Purpose   : Alias to Graph::random_edge
+ Usage     : $edge = $graph1->get_random_edge;
+ Arguments : 
+ Returns   : An Edge object
+ Notes     :
+
+=cut
+
+sub get_random_edge {
+	my $self = shift;
+	my $e = $self->SUPER::random_edge;
+	$e;
+}
+
+=head2 get_random_node
+
+ Name      : get_random_node
+ Purpose   : Alias to Graph::random_vertex
+ Usage     : $node = $graph1->get_random_node;
+ Arguments : 
+ Returns   : A Node object
+ Notes     :
+
+=cut
+
+sub get_random_node {
+	my $self = shift;
+	my $n = $self->SUPER::random_vertex;
+	$n;
+}
+
 =head2 is_forest
 
  Name      : is_forest
@@ -976,32 +1010,6 @@ sub has_node {
 	 return $self->has_vertex($node);		
 }
 
-=head2 nodes_by_id
-
-  Name      : nodes_by_id
-  Purpose   : Alias to get_nodes_by_id
-  Notes     : Deprecated
-
-=cut
-
-sub nodes_by_id {
-	my $self = shift;
-	my @ids = @_;
-	return $self->get_nodes_by_id(@ids);
-}
-
-=head2 edge_count
-
- Name     : edge_count
- Purpose  : Alias to edges()
- Notes    : Deprecated, use edges()
-
-=cut
-
-sub edge_count {
-	my $self = shift;
-	return scalar $self->edges;
-}
 
 =head2 interactions
 
@@ -1028,6 +1036,33 @@ sub interactions {
 	} else {
 		return scalar keys %{$self->[$GRAPH_ARRAY_INDEX]->{'_interx_id_map'}};
 	}
+}
+
+=head2 nodes_by_id
+
+  Name      : nodes_by_id
+  Purpose   : Alias to get_nodes_by_id
+  Notes     : Deprecated
+
+=cut
+
+sub nodes_by_id {
+	my $self = shift;
+	my @ids = @_;
+	return $self->get_nodes_by_id(@ids);
+}
+
+=head2 edge_count
+
+ Name     : edge_count
+ Purpose  : Alias to edges()
+ Notes    : Deprecated, use edges()
+
+=cut
+
+sub edge_count {
+	my $self = shift;
+	return scalar $self->edges;
 }
 
 =head2 neighbor_count
