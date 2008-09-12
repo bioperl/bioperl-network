@@ -858,7 +858,7 @@ sub remove_nodes {
 
 sub get_random_edge {
 	my $self = shift;
-	my $e = $self->SUPER::random_edge;
+	my $e = $self->random_edge;
 	$e;
 }
 
@@ -875,7 +875,7 @@ sub get_random_edge {
 
 sub get_random_node {
 	my $self = shift;
-	my $n = $self->SUPER::random_vertex;
+	my $n = $self->random_vertex;
 	$n;
 }
 

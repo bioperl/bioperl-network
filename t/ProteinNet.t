@@ -7,24 +7,27 @@ use strict;
 $DEBUG = $ENV{'BIOPERLDEBUG'} || 0;
 
 BEGIN {
-	# to handle systems with no installed Test module
-	# we include the t dir (where a copy of Test.pm is located)
-	# as a fallback
-	eval { require Test; };
-	$ERROR = 0;
+	# to handle systems with no installed Test modules
+	# we include the t/lib directory just in case
+	$ERROR = 0;	
+	
+	eval { require Test };
 	if ( $@ ) {
-		use lib 't';
+		use lib 't/lib';
 	}
+
 	use Test;
-	$NUMTESTS = 168;
+
+	$NUMTESTS = 170;
 	plan tests => $NUMTESTS;
+
 	eval { require Graph; };
-	if ($@) {
+	if ( $@ ) {
 		warn "Perl's Graph needed for the bioperl-network package, skipping tests";
 		$ERROR = 1;
 	}
 	eval { require XML::Twig; };
-	if ($@) {
+	if ( $@ ) {
 		warn "XML::Twig needed for XML format parsing, skipping tests";
 		$ERROR = 1;
 	}
@@ -36,11 +39,10 @@ END {
 	}
 }
 
-exit 0 if $ERROR ==  1;
+exit(0) if $ERROR == 1;
 
 require Bio::Network::ProteinNet;
 require Bio::Network::IO;
-require Bio::Network::Interaction;
 
 my $verbose = 0;
 $verbose = 1 if $DEBUG;
@@ -66,7 +68,7 @@ my %ids = $g1->get_ids_by_node($node);
 my $x = 0;
 my @ids = qw(A64696 2314583 3053N);
 for my $k (keys %ids) {
-	ok $ids{$k},$ids[$x++];
+	ok ( $ids{$k},$ids[$x++] );
 }
 #
 # test deleting nodes
@@ -279,6 +281,13 @@ ok @ns, 0;
 #
 @components = $g1->components;
 ok scalar @components, 3;
+#
+# random
+#
+$n = $g1->get_random_node;
+ok( ref($n), 'Bio::Network::Node');
+my $e = $g1->get_random_edge;
+ok( ref($e->[0]), 'Bio::Network::Node');
 
 __END__
 
