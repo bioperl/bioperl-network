@@ -244,12 +244,12 @@ use Bio::Network::IO;
 use Bio::Network::Node;
 use Bio::Species;
 use Bio::Annotation::DBLink;
-use Bio::Annotation::OntologyTerm;
 use Bio::Annotation::Collection;
-use Bio::Annotation::Comment;
-use Bio::Annotation::Reference;
-use Bio::Annotation::SimpleValue;
-use Bio::Network::IO::psi::intact;
+# use Bio::Annotation::OntologyTerm;
+# use Bio::Annotation::Comment;
+# use Bio::Annotation::Reference;
+# use Bio::Annotation::SimpleValue;
+# use Bio::Network::IO::psi::intact;
 
 use vars qw( @ISA %species $net $fac );
 @ISA = qw(Bio::Network::IO Bio::Root::Root );

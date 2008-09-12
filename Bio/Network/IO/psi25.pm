@@ -28,14 +28,14 @@ networks. This module parses version 2.5 of PSI MI.
 
 The following databases provide their data as PSI MI XML:
 
-BIND    L<http://www.bind.ca>
 DIP     L<http://dip.doe-mbi.ucla.edu/>
 HPRD    L<http://www.hprd.org>
 IntAct  L<http://www.ebi.ac.uk/intact>
 MINT    L<http://cbm.bio.uniroma2.it/mint/>
 
 Each of these databases will call PSI format by some different name.
-for example, PSI MI from DIP comes in files with the suffix "mif".
+for example, PSI MI from DIP comes in files with the suffix "mif"
+whereas PSI MI from IntAct or MINT has the "xml" suffix.
 
 Documentation for PSI XML can be found at L<http://www.psidev.info>.
 
