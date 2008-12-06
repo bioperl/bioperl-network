@@ -340,7 +340,7 @@ module written by Nat Goodman.
 
 package Bio::Network::ProteinNet;
 use strict;
-use Graph 0.80;
+use Graph 0.86;
 use Bio::Network::Interaction;
 use Bio::Root::Root;
 use vars qw($GRAPH_ARRAY_INDEX @ISA);
