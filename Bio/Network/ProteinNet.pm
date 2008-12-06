@@ -29,8 +29,7 @@ Bio::Network::ProteinNet - a representation of a protein interaction graph.
 
 =head1 Perl Graph module
 
-The bioperl-network package uses Perl's Graph module and it's essential
-that version .80 or greater be installed.
+The bioperl-network package uses the Perl Graph module, use version .86 or greater.
 
 =head2 Working with Nodes
 
@@ -234,11 +233,6 @@ Bio::Graph::SimpleGraph.
 The advantages to using Graph are that Bioperl developers are not
 responsible for maintaining the code that actually handles graph
 manipulation and there is more functionality in Graph than in SimpleGraph.
-
-The disadvantage is that we now rely on others to keep the package bug-free,
-and there are some bugs in Graph. You should use version .80 or greater 
-but even this version is not free of bugs (a list of known bugs 
-can be found in the BUGS file in this package).
 
 =over 13
 
