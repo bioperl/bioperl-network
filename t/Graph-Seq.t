@@ -16,7 +16,7 @@ BEGIN {
 		use lib 't';
 	}
 	use Test;
-	$NUMTESTS  = 16;
+	$NUMTESTS  = 18;
 	plan tests => $NUMTESTS;
 	eval { require Graph; };
 	if ( $@ ) {
@@ -80,10 +80,10 @@ for my $seq (@vs) {
 	ok $seq->seq;
 }
 
-# Still an intermittent bug
-# @vs = $g->articulation_points; 
-# ok $vs[0]->seq; # not OK in Graph v. .80
-# ok scalar @vs, 2;
+# Fixed in Graph .86
+@vs = $g->articulation_points; 
+ok $vs[0]->seq; # not OK in Graph v. .80
+ok scalar @vs, 2;
 
 my @cc = $g->connected_components;
 for my $ref (@cc) {

@@ -16,7 +16,7 @@ BEGIN {
 		use lib 't';
 	}
 	use Test;
-	$NUMTESTS = 19;
+	$NUMTESTS = 21;
 	plan tests => $NUMTESTS;
 	eval { require Graph; };
 	if ( $@ ) {
@@ -84,13 +84,14 @@ ok $proteins[0]->primary_seq->desc,"Large T antigen";
 my @components = $g1->connected_components;
 ok scalar @components, 2;
 
-# seems there's an intermittent bug in articulation_points() here
-# but not in the invocation above
-# @rts = $g1->articulation_points;
-# ok scalar @rts, 1; # OK, inspected in Cytoscape
-# @proteins = $rts[0]->proteins;
-# $seq = $proteins[0];
-# ok $seq->desc,"Erythropoietin receptor precursor"; # OK, inspected in Cytoscape
+# there was an intermittent bug in articulation_points() here
+# but not in the invocation above, this appears to be fixed
+# in Graph v. .86
+@rts = $g1->articulation_points;
+ok scalar @rts, 1;
+@proteins = $rts[0]->proteins;
+$seq = $proteins[0];
+ok $seq->desc,"Erythropoietin receptor precursor";
 
 #
 # GO terms

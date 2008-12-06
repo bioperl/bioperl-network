@@ -17,14 +17,10 @@ my $build = ModuleBuildBioperl->new(
     dist_author         => 'Bioperl Team <bioperl-l@bioperl.org>',
     dist_abstract       => 'bioperl-network - package for biological networks',
     license             => 'perl',
-    requires            => {
-                            'perl'                      => '5.6.1',
-                            'Bio::Root::Version'        => '1.5.2',
-                            'Graph'                     => 0.8
-                           },
-    recommends          => {
-                            'XML::Twig'					=> '3.22/parsing PSI XML/Bio::Graph::IO::psi'
-                           },
+    requires            => {'perl'                => '5.6.1',
+                            'Bio::Root::Version'  => '1.5.2',
+                            'Graph'               => 0.86 },
+    recommends          => {'XML::Twig' => '3.22/parsing PSI XML/Bio::Graph::IO::psi'},
     dynamic_config      => 1,
     create_makefile_pl  => 'passthrough'
     
