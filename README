@@ -82,6 +82,4 @@ differences between Graph and Bio::Graph::SimpleGraph.
 The advantages to using Graph are that Bioperl developers are not
 responsible for maintaining the code that actually handles graph
 manipulation and there is more functionality in Graph than in SimpleGraph.
-The disadvantage is that we now rely on others to keep the package bug-free.
-You must install version .80 of Graph, or greater, but even this version is not
-completely bug-free (see the BUGS file in this package for details).
+You must install version .86 of Graph, or greater.
