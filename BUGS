@@ -1,7 +1,4 @@
 # $Id: BUGS,v 1.2 2006-09-24 15:41:24 bosborne Exp $
 
-1. The articulation_points() method of Graph will not work on networks
-   of Bio::Seq objects so it can't be used. This method does work on
-   networks composed of "simpler" objects, like Digest::MD5. The
-   author of Graph, Jarkko Hietaniemi, does not know why this is but
-   he hasn't looked into it carefully either.
+1. The articulation_points() method of early versions of Graph would not work on networks
+   of Bio::Seq objects. Use version .86 or later.
