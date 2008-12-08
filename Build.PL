@@ -3,22 +3,21 @@
 # This is a Module::Build script for bioperl-network installation.
 # See http://search.cpan.org/~kwilliams/Module-Build/lib/Module/Build.pm
 
-# Uses a custom subclass of Module::Build called ModuleBuildBioperl that
-# doesn't get installed
+# Uses a custom subclass of Module::Build called Bio::Root::Build
 
 use strict;
-use ModuleBuildBioperl;
+use Bio::Root::Build;
 
-# Set up the ModuleBuildBioperl object
-my $build = ModuleBuildBioperl->new(
+# Set up the Bio::Root::Build object
+my $build = Bio::Root::Build->new(
     module_name         => 'Bio',
     dist_name           => 'bioperl-network',
-    dist_version        => 1.005002100,
+    dist_version        => 1.005002101,
     dist_author         => 'Bioperl Team <bioperl-l@bioperl.org>',
     dist_abstract       => 'bioperl-network - package for biological networks',
     license             => 'perl',
     requires            => {'perl'                => '5.6.1',
-                            'Bio::Root::Version'  => '1.5.2',
+                            'Bio::Root::Version'  => '1.5.2.103',
                             'Graph'               => 0.86 },
     recommends          => {'XML::Twig' => '3.22/parsing PSI XML/Bio::Graph::IO::psi'},
     dynamic_config      => 1,
