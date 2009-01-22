@@ -2,40 +2,15 @@
 # Bioperl Test Harness Script for Modules#
 # $Id$
 
-use vars qw($NUMTESTS $DEBUG $ERROR);
 use strict;
-$DEBUG = $ENV{'BIOPERLDEBUG'} || 0;
 
 BEGIN {
-	# to handle systems with no installed Test module
-	# we include the t dir (where a copy of Test.pm is located)
-	# as a fallback
-	eval { require Test; };
-	$ERROR = 0;
-	if ( $@ ) {
-		use lib 't';
-	}
-	use Test;
-	$NUMTESTS  = 20;
-	plan tests => $NUMTESTS;
-	eval { require Graph::Undirected; };
-	if ( $@ ) {
-		warn("Graph required by the bioperl-network package, skipping tests");
-		$ERROR = 1;
-	}
-	eval { require Digest::MD5; };
-	if ( $@ ) {
-		warn("Digest::MD5 required for these tests, skipping tests");
-		$ERROR = 1;
-	}
-}
+	use Bio::Root::Test;
+	test_begin(-tests => 23,
+			   -requires_module => 'Digest::MD5');
 
-END {
-	foreach ( $Test::ntest..$NUMTESTS) {
-		skip("Missing dependencies. Skipping tests",1);
-	}
+ 	use_ok('Graph::Undirected');
 }
-exit 0 if $ERROR == 1;
 
 #
 # The purpose of these tests is to check to see if bugs have been 
@@ -79,13 +54,13 @@ ok $seq->add($str);
 my $t = Graph::Traversal::DFS->new($g);
 $t->dfs;
 @vs = $t->seen;
-ok scalar @vs, 4;
+ok scalar @vs == 4;
 for my $seq (@vs) {
 	ok $seq->add($str); # NOT OK in version .73
 }
 
 @vs = $g->articulation_points; 
-ok scalar @vs, 2;
+ok scalar @vs == 2;
 ok $vs[0]->add($str); # OK in version .70
 ok $vs[1]->add($str);
 
@@ -104,7 +79,9 @@ my $cg = $g->connected_graph;
 # ok $vs[0]->add($str); # is my usage correct?
 
 my @spd = $g->SP_Dijkstra($seq1,$seq4); # OK in version .70
+ok scalar @spd == 4;
 
 my @spbf = $g->SP_Bellman_Ford($seq1,$seq4); # OK in version .70
+ok scalar @spbf == 4;
 
 __END__
