@@ -2,16 +2,12 @@
 # Bioperl Test Harness Script for Modules
 # $Id$
 
-use vars qw($NUMTESTS $DEBUG $ERROR);
 use strict;
-$DEBUG = $ENV{'BIOPERLDEBUG'} || 0;
 
 BEGIN {
-	
-	use lib ".";
 	use Bio::Root::Test;
-	test_begin(-tests => 11,
-				  -requires_module => 'Graph');
+	test_begin(-tests => 10,
+			   -requires_module => 'Graph');
 
 	use_ok('Bio::Network::ProteinNet');
 	use_ok('Bio::Network::Edge');
@@ -19,10 +15,7 @@ BEGIN {
 	use_ok('Bio::Seq');
 }
 
-my $verbose = 0;
-$verbose = 1 if $DEBUG;
-
-ok 1;
+my $verbose = test_debug();
 
 my $seq1 = Bio::Seq->new(-seq => "aaaaaaa");
 my $seq2 = Bio::Seq->new(-seq => "ttttttt");

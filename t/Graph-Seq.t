@@ -2,16 +2,12 @@
 # Bioperl Test Harness Script for Modules#
 # $Id$
 
-use vars qw($NUMTESTS $DEBUG $ERROR);
 use strict;
-$DEBUG = $ENV{'BIOPERLDEBUG'} || 0;
 
 BEGIN {
-
-	use lib ".";
 	use Bio::Root::Test;
 	test_begin(-tests => 21,
-				  -requires_module => 'Graph');
+			   -requires_module => 'Graph');
 
 	use_ok('Graph::Undirected');
 	use_ok('Graph::Traversal::DFS');

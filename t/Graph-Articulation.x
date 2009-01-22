@@ -2,23 +2,18 @@
 # Bioperl Test Harness Script for Modules
 # $Id: Node.t 14466 2008-02-04 05:15:58Z bosborne $
 
-use vars qw($NUMTESTS $DEBUG $ERROR);
 use strict;
-$DEBUG = $ENV{'BIOPERLDEBUG'} || 0;
 
 BEGIN {
-
-	use lib ".";
 	use Bio::Root::Test;
 	test_begin(-tests => 53,
-				  -requires_module => 'Graph');
+			   -requires_module => 'Graph');
 
 	use_ok('Bio::Network::IO');
 	use_ok('Bio::Network::Node');
 }
 
-my $verbose = 0;
-$verbose = 1 if $DEBUG;
+my $verbose = test_debug();
 
 # tests for Graph's problematic articulation_points()
 # As of 2/2008 this test suite is still not reliably passing -
@@ -30,7 +25,7 @@ $verbose = 1 if $DEBUG;
 #
 my $io = Bio::Network::IO->new(
   -format => 'dip_tab',
-  -file   => Bio::Root::IO->catfile("t","data","tab1part.tab"),
+  -file   => test_input_file("tab1part.tab"),
   -threshold => 0.6);
 ok(defined $io);
 ok my $g1 = $io->next_network();
@@ -45,7 +40,7 @@ ok $nodes == 13;
 #
 $io = Bio::Network::IO->new
 (-format => 'psi10',
- -file   => Bio::Root::IO->catfile("t","data","bovin_small_intact.xml"));
+ -file   => test_input_file("bovin_small_intact.xml"));
 my $g = $io->next_network();
 
 @nodes = $g->nodes;
@@ -73,7 +68,7 @@ foreach my $node (@nodes) {
 #
 ok $io = Bio::Network::IO->new
   (-format => 'psi10',
-	-file   => Bio::Root::IO->catfile("t", "data", "arath_small-02.xml"));
+	-file   => test_input_file("arath_small-02.xml"));
 ok $g1 = $io->next_network();
 ok $g1->nodes == 73;
 ok $g1->interactions == 516;

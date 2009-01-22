@@ -2,32 +2,25 @@
 # Bioperl Test Harness Script for Modules#
 # $Id$
 
-use vars qw($NUMTESTS $DEBUG $ERROR);
 use strict;
-$DEBUG = $ENV{'BIOPERLDEBUG'} || 0;
 
 BEGIN {
-
-	use lib ".";
 	use Bio::Root::Test;
-	test_begin(-tests => 22,
-				  -requires_module => 'Graph',
-				  -requires_module => 'XML::Twig' );
+	test_begin(-tests => 21,
+			   -requires_module => 'Graph',
+			   -requires_module => 'XML::Twig');
 
 	use_ok('Bio::Network::IO');
 }
 
-my $verbose = 0;
-$verbose = 1 if $DEBUG;
-
-ok 1;
+my $verbose = test_debug();
 
 #
 # PSI XML from DIP
 #
 ok my $io = Bio::Network::IO->new
   (-format => 'psi10',
-	-file   => Bio::Root::IO->catfile("t", "data", "psi_xml.dat"));
+	-file   => test_input_file("psi_xml.dat"));
 ok my $g1 = $io->next_network();
 ok $g1->edge_count == 3;
 ok $g1->node_count == 4;
@@ -47,7 +40,7 @@ ok $seq->desc eq "hypothetical HP0001"; # correct, by inspection in Cytoscape
 #
 ok $io = Bio::Network::IO->new
   (-format => 'psi10',
-	-file   => Bio::Root::IO->catfile("t", "data", "sv40_small.xml"));
+	-file   => test_input_file("sv40_small.xml"));
 ok $g1 = $io->next_network();
 ok $g1->edge_count == 3;
 ok $g1->node_count == 5;
@@ -81,7 +74,7 @@ $n = $g1->get_nodes_by_id("EBI-474016");
 #
 ok $io = Bio::Network::IO->new
   (-format => 'psi10',
-	-file   => Bio::Root::IO->catfile("t", "data", "00001.xml"));
+	-file   => test_input_file("00001.xml"));
 # ok $g1 = $io->next_network(); 
 # The individual files from HPRD are not standard PSI, problems parsing them
 

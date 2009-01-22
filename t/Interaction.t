@@ -2,15 +2,12 @@
 # Bioperl Test Harness Script for Modules
 # $Id$
 
-use vars qw($NUMTESTS $DEBUG $ERROR);
 use strict;
-$DEBUG = $ENV{'BIOPERLDEBUG'} || 0;
 
 BEGIN {
-	use lib ".";
 	use Bio::Root::Test;
-	test_begin(-tests => 23,
-				  -requires_module => 'Graph');
+	test_begin(-tests => 22,
+			   -requires_module => 'Graph');
 
 	use_ok('Bio::Network::ProteinNet');
 	use_ok('Bio::Network::Interaction');
@@ -20,10 +17,7 @@ BEGIN {
 	use_ok('Bio::Annotation::OntologyTerm');
 }
 
-my $verbose = 0;
-$verbose = 1 if $DEBUG;
-
-ok 1;
+my $verbose = test_debug();
 
 my $g = Bio::Network::ProteinNet->new();
 

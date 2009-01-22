@@ -2,16 +2,12 @@
 # Bioperl Test Harness Script for Modules
 # $Id$
 
-use vars qw($NUMTESTS $DEBUG $ERROR);
 use strict;
-$DEBUG = $ENV{'BIOPERLDEBUG'} || 0;
 
 BEGIN {
-
-	use lib ".";
 	use Bio::Root::Test;
-	test_begin(-tests => 20,
-				  -requires_module => 'Graph');
+	test_begin(-tests => 19,
+			   -requires_module => 'Graph');
 
 	use_ok('Bio::Network::IO');
 	use_ok('Bio::Network::Edge');
@@ -19,17 +15,14 @@ BEGIN {
 	use_ok('Bio::Seq');
 }
 
-my $verbose = 0;
-$verbose = 1 if $DEBUG;
-
-ok 1;
+my $verbose = test_debug();
 
 #
 # read new DIP format
 #
 my $io = Bio::Network::IO->new(
     -format => 'dip_tab',
-    -file   => Bio::Root::IO->catfile("t","data","tab4part.tab"));
+    -file   => test_input_file("tab4part.tab"));
 my $g1 = $io->next_network();
 ok $g1->edges == 5;
 ok $g1->vertices == 7;
@@ -38,7 +31,7 @@ ok $g1->vertices == 7;
 #
 $io = Bio::Network::IO->new(
   -format => 'dip_tab',
-  -file   => Bio::Root::IO->catfile("t","data","tab1part.tab"),
+  -file   => test_input_file("tab1part.tab"),
   -threshold => 0.6);
 ok(defined $io);
 ok $g1 = $io->next_network();
@@ -54,9 +47,10 @@ for my $k (keys %ids) {
 #
 # test write to filehandle...
 #
+my $out_file = test_output_file();
 my $out =  Bio::Network::IO->new(
   -format => 'dip_tab',
-  -file   => ">". Bio::Root::IO->catfile("t","data","out.tab"));
+  -file   => ">".$out_file);
 ok(defined $out);
 ok $out->write_network($g1);
 #
@@ -64,7 +58,7 @@ ok $out->write_network($g1);
 #
 my $io2 = Bio::Network::IO->new(
   -format   => 'dip_tab',
-  -file     => Bio::Root::IO->catfile("t","data","out.tab"));
+  -file     => $out_file);
 ok defined $io2;
 ok	my $g2 = $io2->next_network();
 ok $node = $g2->get_nodes_by_id('PIR:A64696');

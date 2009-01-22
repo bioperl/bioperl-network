@@ -2,16 +2,12 @@
 # Bioperl Test Harness Script for Modules#
 # $Id$
 
-use vars qw($NUMTESTS $DEBUG $ERROR);
 use strict;
-$DEBUG = $ENV{'BIOPERLDEBUG'} || 0;
 
 BEGIN {
-
-	use lib ".";
 	use Bio::Root::Test;
 	test_begin(-tests => 23,
-				  -requires_module => 'Digest::MD5' );
+			   -requires_module => 'Digest::MD5');
 
  	use_ok('Graph::Undirected');
 }

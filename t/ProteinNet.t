@@ -2,32 +2,26 @@
 # Bioperl Test Harness Script for Modules
 # $Id$
 
-use vars qw($NUMTESTS $DEBUG $ERROR);
 use strict;
-$DEBUG = $ENV{'BIOPERLDEBUG'} || 0;
 
 BEGIN {
-	use lib ".";
 	use Bio::Root::Test;
-	test_begin(-tests => 172,
-				  -requires_module => 'Graph',
-				  -requires_module => 'XML::Twig' );
+	test_begin(-tests => 171,
+			   -requires_module => 'Graph',
+			   -requires_module => 'XML::Twig' );
 
 	use_ok('Bio::Network::ProteinNet');
 	use_ok('Bio::Network::IO');
 }
 
-my $verbose = 0;
-$verbose = 1 if $DEBUG;
-
-ok 1;
+my $verbose = test_debug();
 
 #
 # read old DIP format
 #
 my $io = Bio::Network::IO->new(
   -format => 'dip_tab',
-  -file   => Bio::Root::IO->catfile("t","data","tab1part.tab"),
+  -file   => test_input_file("tab1part.tab"),
   -threshold => 0.6);
 ok(defined $io);
 ok my $g1 = $io->next_network();
@@ -143,7 +137,7 @@ is $g2->get_nodes_by_id('B64'), undef;
 #
 $io = Bio::Network::IO->new
 (-format => 'psi10',
- -file   => Bio::Root::IO->catfile("t","data","bovin_small_intact.xml"));
+ -file   => test_input_file("bovin_small_intact.xml"));
 my $g = $io->next_network();
 ok $g->edges == 15;
 ok $g->nodes == 23;
@@ -172,12 +166,12 @@ ok scalar @pairs == 1;
 #
 $io = Bio::Network::IO->new
     (-format => 'dip_tab',
-     -file   => Bio::Root::IO->catfile("t","data","tab4part.tab"));
+     -file   => test_input_file("tab4part.tab"));
 $g1 = $io->next_network();
 
 my $io2 = Bio::Network::IO->new
     (-format => 'dip_tab',
-     -file   => Bio::Root::IO->catfile("t","data","tab3part.tab"));
+     -file   => test_input_file("tab3part.tab"));
 $g2 = $io2->next_network();
 
 ok $g1->edges == 5;
@@ -227,7 +221,7 @@ ok $ix->weight == 12;
 #
 ok $io = Bio::Network::IO->new
   (-format => 'psi10',
-	-file   => Bio::Root::IO->catfile("t", "data", "sv40_small.xml"));
+	-file   => test_input_file("sv40_small.xml"));
 ok $g1 = $io->next_network();
 ok $g1->edge_count == 3;
 ok $g1->node_count == 5;
