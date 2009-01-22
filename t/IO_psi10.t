@@ -72,11 +72,11 @@ $n = $g1->get_nodes_by_id("EBI-474016");
 #
 # PSI XML from HPRD
 #
+# The individual files from HPRD are not standard PSI, problems parsing them
 ok $io = Bio::Network::IO->new
   (-format => 'psi10',
 	-file   => test_input_file("00001.xml"));
 # ok $g1 = $io->next_network(); 
-# The individual files from HPRD are not standard PSI, problems parsing them
 
 __END__
 
