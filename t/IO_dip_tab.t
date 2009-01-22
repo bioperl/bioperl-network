@@ -7,34 +7,17 @@ use strict;
 $DEBUG = $ENV{'BIOPERLDEBUG'} || 0;
 
 BEGIN {
-	# to handle systems with no installed Test module
-	# we include the t dir (where a copy of Test.pm is located)
-	# as a fallback
-	eval { require Test; };
-	$ERROR = 0;
-	if ( $@ ) {
-		use lib 't';
-	}
-	use Test;
-	$NUMTESTS = 16;
-	plan tests => $NUMTESTS;
-	eval { require Graph; };
-	if ($@) {
-		warn "Perl's Graph needed for the bioperl-network package, skipping tests";
-		$ERROR = 1;
-	}
+
+	use lib ".";
+	use Bio::Root::Test;
+	test_begin(-tests => 20,
+				  -requires_module => 'Graph');
+
+	use_ok('Bio::Network::IO');
+	use_ok('Bio::Network::Edge');
+	use_ok('Bio::Network::Node');
+	use_ok('Bio::Seq');
 }
-
-END {
-	foreach ( $Test::ntest..$NUMTESTS) {
-		skip("Missing dependencies. Skipping tests",1);
-	}
-	unlink "t/data/out.tab" if -e "t/data/out.tab";
-}
-
-exit 0 if $ERROR ==  1;
-
-require Bio::Network::IO;
 
 my $verbose = 0;
 $verbose = 1 if $DEBUG;
@@ -48,8 +31,8 @@ my $io = Bio::Network::IO->new(
     -format => 'dip_tab',
     -file   => Bio::Root::IO->catfile("t","data","tab4part.tab"));
 my $g1 = $io->next_network();
-ok $g1->edges,5;
-ok $g1->vertices,7;
+ok $g1->edges == 5;
+ok $g1->vertices == 7;
 #
 # read old DIP format
 #
@@ -66,7 +49,7 @@ my %ids = $g1->get_ids_by_node($node);
 my $x = 0;
 my @ids = qw(A64696 2314583 3053N);
 for my $k (keys %ids) {
-	ok $ids{$k},$ids[$x++];
+	ok $ids{$k} eq $ids[$x++];
 }
 #
 # test write to filehandle...
@@ -86,7 +69,7 @@ ok defined $io2;
 ok	my $g2 = $io2->next_network();
 ok $node = $g2->get_nodes_by_id('PIR:A64696');
 @proteins = $node->proteins;
-ok $proteins[0]->accession_number, 'PIR:A64696';
+ok $proteins[0]->accession_number eq 'PIR:A64696';
 
 __END__
 
