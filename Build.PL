@@ -12,12 +12,14 @@ use Bio::Root::Build;
 my $build = Bio::Root::Build->new(
     module_name         => 'Bio',
     dist_name           => 'BioPerl-network',
-    dist_version        => '1.007000',
+    dist_version        => '1.005009_001',
     dist_author         => 'BioPerl Team <bioperl-l@bioperl.org>',
     dist_abstract       => 'BioPerl-network - package for biological networks',
     license             => 'perl',
     requires            => {'perl'                => '5.6.1',
-                            'Bio::Root::Version'  => '1.7.0',
+                            # this can be bumped to a higher point version if a
+                            # fix is needed from a core 1.6 point release
+                            'Bio::Root::Version'  => '1.005009_001', 
                             'Graph'               => 0.86 },
     recommends          => {'XML::Twig' => '3.22/parsing PSI XML/Bio::Graph::IO::psi'},
     dynamic_config      => 1,
