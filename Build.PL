@@ -19,7 +19,7 @@ my $build = Bio::Root::Build->new(
     requires            => {'perl'                => '5.6.1',
                             # this can be bumped to a higher point version if a
                             # fix is needed from a core 1.6 point release
-                            'Bio::Root::Version'  => '1.005009_001', 
+                            'Bio::Root::Version'  => '1.006000', 
                             'Graph'               => 0.86 },
     recommends          => {'XML::Twig' => '3.22/parsing PSI XML/Bio::Graph::IO::psi'},
     dynamic_config      => 1,
