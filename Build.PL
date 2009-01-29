@@ -12,7 +12,7 @@ use Bio::Root::Build;
 my $build = Bio::Root::Build->new(
     module_name         => 'Bio',
     dist_name           => 'BioPerl-network',
-    dist_version        => '1.007000',
+    dist_version        => '1.006000',
     dist_author         => 'BioPerl Team <bioperl-l@bioperl.org>',
     dist_abstract       => 'BioPerl-network - package for biological networks',
     license             => 'perl',
