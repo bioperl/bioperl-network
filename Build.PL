@@ -6,20 +6,23 @@
 # Uses a custom subclass of Module::Build called Bio::Root::Build
 
 use strict;
-use Bio::Root::Build;
+my $v = '1.005009_002';
+eval "use Bio::Root::Build $v";
+if ($@) {
+    # using die so wrappers can catch the error message
+    die "BioPerl minimal core version $v is required for BioPerl-network\n";
+}
 
 # Set up the Bio::Root::Build object
 my $build = Bio::Root::Build->new(
     module_name         => 'Bio',
     dist_name           => 'BioPerl-network',
-    dist_version        => '1.005009_001',
+    dist_version        => $v,
     dist_author         => 'BioPerl Team <bioperl-l@bioperl.org>',
     dist_abstract       => 'BioPerl-network - package for biological networks',
     license             => 'perl',
     requires            => {'perl'                => '5.6.1',
-                            # this can be bumped to a higher point version if a
-                            # fix is needed from a core 1.6 point release
-                            'Bio::Root::Version'  => '1.006000', 
+                            #'Bio::Root::Version'  => '1.006000', # checked above
                             'Graph'               => 0.86 },
     recommends          => {'XML::Twig' => '3.22/parsing PSI XML/Bio::Graph::IO::psi'},
     dynamic_config      => 1,
