@@ -6,13 +6,14 @@ use strict;
 
 BEGIN {
 	use Bio::Root::Test;
-	test_begin(-tests => 22,
+	test_begin(-tests => 23,
 			   -requires_module => 'Graph');
 
 	use_ok('Bio::Network::ProteinNet');
 	use_ok('Bio::Network::Interaction');
 	use_ok('Bio::Network::Node');
 	use_ok('Bio::Seq');
+	use_ok('Bio::Annotation::Comment');
 	use_ok('Bio::Annotation::Collection');
 	use_ok('Bio::Annotation::OntologyTerm');
 }
