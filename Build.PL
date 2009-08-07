@@ -3,28 +3,24 @@
 # This is a Module::Build script for bioperl-network installation.
 # See http://search.cpan.org/~kwilliams/Module-Build/lib/Module/Build.pm
 
-# Uses a custom subclass of Module::Build called Bio::Root::Build
-
 use strict;
-my $v = '1.006900'; # pre-1.7, requires bioperl-live main trunk
-eval "use Bio::Root::Build $v";
-if ($@) {
-    # using die so wrappers can catch the error message
-    die "BioPerl minimal core version $v is required for BioPerl-network\n";
-}
+use warnings;
+use Module::Build;
 
 # Set up the Bio::Root::Build object
-my $build = Bio::Root::Build->new(
+my $build = Module::Build->new(
     module_name         => 'Bio',
     dist_name           => 'BioPerl-network',
-    dist_version        => $v,
+    dist_version        => '1.006000',
     dist_author         => 'BioPerl Team <bioperl-l@bioperl.org>',
     dist_abstract       => 'BioPerl-network - package for biological networks',
     license             => 'perl',
-    requires            => {'perl'                => '5.6.1',
-                            #'Bio::Root::Version'  => '1.006000', # checked above
+    requires            => {'perl'                => 5.006001,
+                            'Bio::Root::Version'  => 1.006000, # checked above
                             'Graph'               => 0.86 },
-    recommends          => {'XML::Twig' => '3.22/parsing PSI XML/Bio::Graph::IO::psi'},
+    recommends          => {
+                            'XML::Twig' => 3.22, # parsing PSI XML/Bio::Graph::IO::psi
+                           },
     dynamic_config      => 1,
     create_makefile_pl  => 'passthrough'
     
