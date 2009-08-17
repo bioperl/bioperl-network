@@ -3,9 +3,10 @@
 bioperl-network README
 
 1. Installation
-2. Introduction
-3. Status
-4. History
+2. PSI Formats
+3. Overview
+4. Status
+5. History
 
 
 1. Installation
@@ -14,7 +15,15 @@ See the accompanying INSTALL file for details on installing
 bioperl-network.
 
 
-2. Introduction
+2. PSI Formats
+
+Different databases offer different variants of the PSI 2.5
+format. Some of these files cannot be parsed by this package. Please see:
+
+http://www.bioperl.org/wiki/Module:Bio::Graph::IO::psi_xml
+
+
+3. Overview
 
 A ProteinNet is a representation of a protein-protein interaction network.
 Its functionality derives from the Graph module of Perl and from BioPerl.
@@ -51,7 +60,7 @@ For more detailed documentation also see the
 Bio::Network::ProteinNet module.
 
 
-3. Status
+4. Status
 
 This package should be considered a preliminary piece of
 work. Although the code is tested and stable it lacks functionality. Not
@@ -62,7 +71,7 @@ ontology term aren't yet implemented. If you are interested in contributing
 please contact Brian Osborne at bioperl-l@bioperl.org.
 
 
-4. History
+5. History
 
 Modules similar to these were first released as part of the core BioPerl package
 and were called Bio::Graph*. Bio::Graph was copied to a separate package,
