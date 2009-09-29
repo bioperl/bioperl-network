@@ -6,12 +6,10 @@ use strict;
 
 BEGIN {
 	use Bio::Root::Test;
-	test_begin(-tests => 19,
+	test_begin(-tests => 17,
 			   -requires_module => 'Graph');
 
 	use_ok('Bio::Network::IO');
-	use_ok('Bio::Network::Edge');
-	use_ok('Bio::Network::Node');
 	use_ok('Bio::Seq');
 }
 
