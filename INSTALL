@@ -47,11 +47,11 @@ bioperl-network Installation
     >cpan
     cpan>d /bioperl-network/
     Database was generated on Mon, 20 Nov 2006 05:24:36 GMT
-    Distribution C/CJ/CJFIELDS/bioperl-network-1.006000.tar.gz
+    Distribution id = C/CJ/CJFIELDS/BioPerl-network-1.6.0.tar.gz
   
    Now install:
 
-    cpan>install C/CJ/CJFIELDS/bioperl-network-1.006000.tar.gz
+    cpan>install C/CJ/CJFIELDS/BioPerl-network-1.6.0.tar.gz
 
    If you've installed everything perfectly then you may pass all the tests
    run in the './Build test' phase.
@@ -63,7 +63,7 @@ bioperl-network Installation
    If you decide that the failed tests will not affect how you intend to use
    bioperl-network and you'd like to install anyway do:
 
-    cpan>force C/CJ/CJFIELDS/bioperl-network-1.006000.tar.gz
+    cpan>force install C/CJ/CJFIELDS/BioPerl-network-1.6.0.tar.gz
 
    This is what most experienced Bioperl users would do. However, if you're
    concerned about a failed test and need assistance or advice then contact
