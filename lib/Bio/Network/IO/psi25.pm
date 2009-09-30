@@ -28,10 +28,25 @@ networks. This module parses version 2.5 of PSI MI.
 
 The following databases provide their data as PSI MI XML:
 
-DIP     L<http://dip.doe-mbi.ucla.edu/>
-HPRD    L<http://www.hprd.org>
-IntAct  L<http://www.ebi.ac.uk/intact>
-MINT    L<http://cbm.bio.uniroma2.it/mint/>
+=over 3
+
+=item *
+
+DIP L<http://dip.doe-mbi.ucla.edu/>
+
+=item *
+
+HPRD L<http://www.hprd.org>
+
+=item *
+
+IntAct L<http://www.ebi.ac.uk/intact>
+
+=item *
+
+MINT L<http://cbm.bio.uniroma2.it/mint/>
+
+=back
 
 Each of these databases will call PSI format by some different name.
 for example, PSI MI from DIP comes in files with the suffix "mif"
@@ -69,71 +84,106 @@ B<interactor> (entrySet/entry/interactorList/interactor). The following are
 subclasses of B<interactor> whose values are accessible through the Node
 object.
 
-=head2 interactor/names/shortLabel
+=over 3
 
-Annotation::SimpleValue
+=item *
 
-=head2 interactor/names/fullName
+interactor/names/shortLabel
 
-Annotation::SimpleValue
+L<Bio::Annotation::SimpleValue|Bio::Annotation::SimpleValue>
 
-=head2 interactor/xref/primaryRef
+=item *
 
-Annotation::DBLink
+interactor/names/fullName
 
-=head2 interactor/xref/secondaryRef
+L<Bio::Annotation::SimpleValue|Bio::Annotation::SimpleValue>
 
-Annotation::DBLink
+=item *
 
-Bio::Species object
+interactor/xref/primaryRef
 
-=head2 interactor/organism/names/alias
+L<Bio::Annotation::DBLink|Bio::Annotation::DBLink>
 
-Bio::Species object
+=item *
 
-=head2 interactor/organism/names/fullName
+interactor/xref/secondaryRef
 
-Bio::Species object
+L<Bio::Annotation::DBLink|Bio::Annotation::DBLink>
 
-=head2 interactor/organism/names/shortLabel
+L<Bio::Species|Bio::Species> object
 
-Bio::Species object
+=item *
+
+interactor/organism/names/alias
+
+L<Bio::Species|Bio::Species> object
+
+=item *
+
+interactor/organism/names/fullName
+
+L<Bio::Species|Bio::Species> object
+
+=item *
+
+interactor/organism/names/shortLabel
+
+L<Bio::Species|Bio::Species> object
+
+=back
 
 =head1 DATA NOT YET AVAILABLE
 
 The following are subclasses of B<interactor> whose values are currently not
 accessible through the Node object.
 
-=head2 interactor/names/alias
+=over 3
 
-Annotation::SimpleValue
+=item *
 
-=head2 interactor/sequence
+interactor/names/alias
 
-=head2 interactor/interactorType/names
+L<Bio::Annotation::SimpleValue|Bio::Annotation::SimpleValue>
+
+=item *
+
+interactor/sequence
+
+=item *
+
+interactor/interactorType/names
 
 Controlled vocabulary maintained by PSI MI
 L<http://www.ebi.ac.uk/ontology-lookup/browse.do?ontName=MI>.
 Example: "protein".
 
-OntologyTerm
+L<Bio::Annotation::OntologyTerm|Bio::Annotation::OntologyTerm>
 
-=head2 interactor/interactorType/xref
+=item *
 
-Annotation::DBLink
+interactor/interactorType/xref
 
-=head2 interactor/organism/cellType
+L<Bio::Annotation::DBLink|Bio::Annotation::DBLink>
 
-Annotation::OntologyTerm
+=item *
 
-=head2 interactor/organism/compartment
+interactor/organism/cellType
 
-Annotation::OntologyTerm
+L<Bio::Annotation::OntologyTerm|Bio::Annotation::OntologyTerm>
 
-=head2 interactor/organism/tissue
+=item *
 
-Annotation::OntologyTerm
+interactor/organism/compartment
 
+L<Bio::Annotation::OntologyTerm|Bio::Annotation::OntologyTerm>
+
+=item *
+
+interactor/organism/tissue
+
+L<Bio::Annotation::OntologyTerm|Bio::Annotation::OntologyTerm>
+
+=back
 
 =head1 INTERACTION DATA
 
@@ -143,70 +193,100 @@ The Interaction object is roughly equivalent to the PSI MI B<interaction>
 subclasses of B<interaction> and B<experimentDescription> whose values are 
 NOT yet accessible through the Interaction object.
 
-=head2 interaction/xref/primaryRef
+=over 3
 
-Annotation::DBLink
+=item *
 
-=head2 interaction/xref/secondaryRef
+interaction/xref/primaryRef
 
-Annotation::DBLink
+L<Bio::Annotation::DBLink|Bio::Annotation::DBLink>
 
-=head2 interaction/organism/names/shortLabel
+=item *
 
-Bio::Species object
+interaction/xref/secondaryRef
 
-=head2 interaction/organism/names/alias
+L<Bio::Annotation::DBLink|Bio::Annotation::DBLink>
 
-Bio::Species object
+=item *
 
-=head2 interaction/organism/names/fullName
+interaction/organism/names/shortLabel
 
-Bio::Species object
+L<Bio::Species|Bio::Species> object
 
-=head2 interaction/modelled
+=item *
 
-Annotation::SimpleValue
+interaction/organism/names/alias
 
-=head2 interaction/intraMolecular
+L<Bio::Species|Bio::Species> object
 
-Annotation::SimpleValue
+=item *
 
-=head2 interaction/negative
+interaction/organism/names/fullName
 
-Annotation::SimpleValue
+L<Bio::Species|Bio::Species> object
 
-=head2 interaction/interactionType
+=item *
+
+interaction/modelled
+
+L<Bio::Annotation::SimpleValue|Bio::Annotation::SimpleValue>
+
+=item *
+
+interaction/intraMolecular
+
+L<Bio::Annotation::SimpleValue|Bio::Annotation::SimpleValue>
+
+=item *
+
+interaction/negative
+
+L<Bio::Annotation::SimpleValue|Bio::Annotation::SimpleValue>
+
+=item *
+
+interaction/interactionType
 
 Controlled vocabulary maintained by PSI MI
 L<http://www.ebi.ac.uk/ontology-lookup/browse.do?ontName=MI>.
 Example: "phosphorylation reaction".
 
-OntologyTerm
+L<Bio::Annotation::OntologyTerm|Bio::Annotation::OntologyTerm>
 
-=head2 interaction/confidenceList
+=item *
 
-Annotation::SimpleValue
+interaction/confidenceList
 
-=head2 experimentDescription/confidenceList
+L<Bio::Annotation::SimpleValue|Bio::Annotation::SimpleValue>
 
-Annotation::SimpleValue
+=item *
 
-=head2 experimentDescription/interactionDetectionMethod
+experimentDescription/confidenceList
+
+L<Bio::Annotation::SimpleValue|Bio::Annotation::SimpleValue>
+
+=item *
+
+experimentDescription/interactionDetectionMethod
 
 Controlled vocabulary maintained by PSI MI
 L<http://www.ebi.ac.uk/ontology-lookup/browse.do?ontName=MI>.
 Example: "two hybrid array".
 
-Annotation::OntologyTerm
+L<Bio::Annotation::OntologyTerm|Bio::Annotation::OntologyTerm>
 
-=head2 featureElementType/featureType
+=item *
+
+featureElementType/featureType
 
 Controlled vocabulary maintained by PSI MI
 L<http://www.ebi.ac.uk/ontology-lookup/browse.do?ontName=MI>. 
 The featureType includes data on post-translational modification.
 Example: "phospho-histidine".
 
-Annotation::OntologyTerm
+L<Bio::Annotation::OntologyTerm|Bio::Annotation::OntologyTerm>
+
+=back
 
 =head1 FEEDBACK
 
@@ -220,11 +300,11 @@ of the Bioperl mailing lists. Your participation is much appreciated.
   http://bioperl.org/wiki/Mailing_lists  - About the mailing lists
 
 =head2 Support 
- 
+
 Please direct usage questions or support issues to the mailing list:
-  
-L<bioperl-l@bioperl.org>
-  
+
+I<bioperl-l@bioperl.org>
+
 rather than to the module maintainer directly. Many experienced and 
 reponsive experts will be able look at the problem and quickly 
 address it. Please include a thorough description of the problem 
