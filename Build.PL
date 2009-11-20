@@ -8,7 +8,6 @@ use warnings;
 use Module::Build;
 
 my $build = Module::Build->new(
-    module_name         => 'Bio::Network',
     dist_name           => 'BioPerl-Network',
     dist_version        => '1.006900',
     dist_author         => 'BioPerl Team <bioperl-l@bioperl.org>',
