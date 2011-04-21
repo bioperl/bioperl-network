@@ -22,7 +22,7 @@ my $build = Module::Build->new(
                             'XML::Twig' => 3.22 # parsing PSI XML/Bio::Graph::IO::psi
                            },
     dynamic_config      => 1,
-    create_makefile_pl  => 'passthrough'
+    #create_makefile_pl  => 'passthrough'
 );
 
 $build->create_build_script;
