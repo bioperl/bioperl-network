@@ -10,6 +10,7 @@ use Module::Build;
 my $build = Module::Build->new(
     dist_name           => 'BioPerl-Network',
     dist_version        => '1.006900',
+    module_name         => 'Bio::Network',
     dist_author         => 'BioPerl Team <bioperl-l@bioperl.org>',
     dist_abstract       => 'BioPerl-Network - package for biological networks',
     license             => 'perl',
