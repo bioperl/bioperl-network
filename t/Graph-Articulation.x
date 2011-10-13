@@ -1,6 +1,5 @@
 # This is -*-Perl-*- code#
 # Bioperl Test Harness Script for Modules
-# $Id: Node.t 14466 2008-02-04 05:15:58Z bosborne $
 
 use strict;
 

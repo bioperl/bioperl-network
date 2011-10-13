@@ -1,4 +1,3 @@
-# $Id: psi25.pm 14461 2008-02-01 17:29:35Z bosborne $
 #
 # BioPerl module for Bio::Network::IO::psi25
 #

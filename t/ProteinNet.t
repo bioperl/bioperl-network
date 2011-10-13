@@ -1,6 +1,5 @@
 # This is -*-Perl-*- code#
 # Bioperl Test Harness Script for Modules
-# $Id$
 
 use strict;
 
