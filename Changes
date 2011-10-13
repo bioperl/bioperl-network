@@ -3,6 +3,10 @@ Revision history for bioperl-network.
 Full details of changes between all versions are available online at:
 http://www.bioperl.org/wiki/Change_log
 
+1.6.901
+-----
+Attempt to fix CPAN indexing
+
 1.6.900
 -----
 Release to coincide with BioPerl 1.6.900

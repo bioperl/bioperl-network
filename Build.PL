@@ -9,20 +9,20 @@ use Module::Build;
 
 my $build = Module::Build->new(
     dist_name           => 'BioPerl-Network',
-    dist_version        => '1.006900',
+    dist_version        => '1.006901',
     module_name         => 'Bio::Network',
     dist_author         => 'BioPerl Team <bioperl-l@bioperl.org>',
     dist_abstract       => 'BioPerl-Network - package for biological networks',
     license             => 'perl',
     requires            => {
                             'perl'                => '5.6.1',
-                            'Bio::Root::Version'  => '1.006900',
+                            'Bio::Root::Version'  => '1.006901',
                             'Graph'               => 0.86
                            },
     recommends          => {
                             'XML::Twig' => 3.22 # parsing PSI XML/Bio::Graph::IO::psi
                            },
-    dynamic_config      => 1,
+    #dynamic_config      => 1,
     #create_makefile_pl  => 'passthrough'
 );
 
