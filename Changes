@@ -3,6 +3,10 @@ Revision history for bioperl-network.
 Full details of changes between all versions are available online at:
 http://www.bioperl.org/wiki/Change_log
 
+1.6.902
+-----
+Add build_requires for Test::Warn, should take care of dependency
+
 1.6.901
 -----
 Attempt to fix CPAN indexing
