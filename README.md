@@ -1,24 +1,17 @@
 bioperl-network README
 
-1. Installation
-2. PSI Formats
-3. Overview
-4. Status
-5. History
-6. Usage Notes
-
-1. Installation
+## Installation
 
 See the accompanying INSTALL file for details on installing
 bioperl-network.
 
 
-2. PSI Formats
+## PSI Formats
 
 Different databases offer different variants of the PSI 2.5 format.
 Some of these files cannot be parsed by this package. Please see Usage Notes.
 
-3. Overview
+## Overview
 
 A ProteinNet is a representation of a protein-protein interaction network.
 Its functionality derives from the Graph module of Perl and from BioPerl.
@@ -55,7 +48,7 @@ For more detailed documentation also see the
 Bio::Network::ProteinNet module.
 
 
-4. Status
+## Status
 
 This package should be considered a preliminary piece of
 work. Although the code is tested and stable it lacks functionality. Not
@@ -64,7 +57,7 @@ The BioPAX format is not parsed, arguably as important a format as
 PSI MI. In addition useful functions such as searching by sequence or 
 ontology term aren't yet implemented.
 
-5. History
+## History
 
 Modules similar to these were first released as part of the core BioPerl package
 and were called Bio::Graph*. Bio::Graph was copied to a separate package,
@@ -86,9 +79,9 @@ responsible for maintaining the code that actually handles graph
 manipulation and there is more functionality in Graph than in SimpleGraph.
 You must install version .86 of Graph, or greater.
 
-6. Usage Notes
+## Usage Notes
 
-## HPRD
+### HPRD
 
 Individual PSI XML files from HPRD can't be parsed as is because the fullName of the organism of an interacting protein is not specific. HPRD uses values like 'Mammalia' rather than the required species names, thus Bio::Species objects can't be constructed. Although I haven't performed an accurate count a simple grep suggests that there are thousands of interacting proteins labelled 'Mammalia'. Since HPRD says that it is concerned exclusively the human proteome it may that one can globally replace 'Mammalia' with 'Homo sapiens'. On the other hand it may be that including an interaction in HPRD is allowed when only one of the interacting pair is human, the definitive test could be performed using the identifiers (BIO 18:16, 31 December 2005 (EST)).
 
@@ -100,11 +93,11 @@ Mishra GR, Suresh M, Kumaran K, Kannabiran N, Suresh S, Bala P, Shivakumar K, An
 
 Peri S, Navarro JD, Kristiansen TZ, Amanchy R, Surendranath V, Muthusamy B, Gandhi TK, Chandrika KN, Deshpande N, Suresh S, Rashmi BP, Shanker K, Padma N, Niranjan V, Harsha HC, Talreja N, Vrushabendra BM, Ramya MA, Yatish AJ, Joy M, Shivashankar HN, Kavitha MP, Menezes M, Choudhury DR, Ghosh N, Saravana R, Chandran S, Mohan S, Jonnalagadda CK, Prasad CK, Kumar-Sinha C, Deshpande KS, and Pandey A. Human protein reference database as a discovery resource for proteomics. Nucleic Acids Res. 2004 Jan 1;32(Database issue):D497-501. DOI:10.1093/nar/gkh070 | PubMed ID:14681466
 
-## IntAct
+### IntAct
 
 PSI XML from IntAct has occasional errors, the fullName of the organism of some interacting proteins is absent when the shortLabel of the organism is 'in vitro', these are usually short peptides (fullName is used as a source of species information, thus Bio::Species objects can't be constructed). In one file I examined there were only a few proteins like this, they could be corrected by hand (BIO 18:16, 31 December 2005 (EST)).
 
-## MINT
+### MINT
 
 PSI XML from MINT has occasional errors, the fullName of the organism of some interacting proteins is absent. BIO 13:46, 2 October 2006 (EDT)
 
