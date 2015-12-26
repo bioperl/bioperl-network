@@ -1,5 +1,7 @@
 bioperl-network README
 
+A BioPerl package to read protein-protein interaction data and convert it to networks of BioPerl objects.
+
 ## Installation
 
 See the accompanying INSTALL file for details on installing
