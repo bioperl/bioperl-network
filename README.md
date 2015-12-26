@@ -22,8 +22,7 @@ A node is one or more BioPerl sequence objects, a Bio::Seq or
 Bio::Seq::RichSeq object. Since a node can contain more than one
 Sequence object it can represent protein complexes as well as proteins.
 Essentially the node can be any Bioperl object that implements the
-Bio::AnnotatableI and Bio::IdentifiableI interfaces. This is relevant since the 
-identities of nodes are determined by their identifiers.
+Bio::AnnotatableI and Bio::IdentifiableI interfaces. This is relevant since the identities of nodes are determined by their identifiers.
 
 The bioperl-network modules use Perl's Graph::Undirected 
 module and inherit its formal model as well. An edge corresponds to a 
@@ -39,13 +38,10 @@ identifier, add and delete components (nodes, interactions, and
 edges), count all components of a certain type, get all components of
 a certain type, and get subgraphs. Then you have all the functionality
 of Perl's Graph in addition such as traversal using different
-algorithms, getting interior and exterior nodes, and getting all  
-connected subgraphs. Graph is quite rich in functionality, this list
-is only a small subset of available methods, see the documentation 
-for Graph for more detail (http://search.cpan.org/~jhi/Graph/lib/Graph.pod).
+algorithms, getting interior and exterior nodes, and getting all connected subgraphs. Graph is quite rich in functionality, this list is only a small subset of available methods, see the documentation for Graph for more detail (https://metacpan.org/pod/Graph).
 
 For more detailed documentation also see the
-Bio::Network::ProteinNet module.
+https://metacpan.org/pod/Bio::Network::ProteinNet module.
 
 
 ## Status

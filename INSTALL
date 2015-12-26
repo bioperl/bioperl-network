@@ -1,26 +1,21 @@
 bioperl-network Installation
 
-1. Requirements
-2. Installing bioperl-network (Unix or Cygwin)
-
-1. Requirements 
+REQUIREMENTS 
 
 Perl 5.6.1 is required, but 5.8 or greater is recommended.
 
 The bioperl-network package depends on the core BioPerl package. See  
-the BioPerl INSTALL file for instructions for downloading and installing 
-BioPerl. You should install at least the corresponding version of Bioperl: 
-since this is bioperl-network 1.6, bioperl 1.6 or greater is recommended.
+the BioPerl INSTALL file (http://bioperl.org/INSTALL.html) for instructions 
+for downloading and installing BioPerl. You should install at least the 
+corresponding version of Bioperl: since this is bioperl-network 1.6, bioperl 
+1.6 or greater is recommended.
 
-bioperl-network also depends on Perl's Graph package. See CPAN at 
-www.perl.org for instructions on downloading and installing Graph,
-use Graph version .86 or greater.
+bioperl-network also requires Perl's Graph package, https://metacpan.org/pod/Graph
 
 Reading PSI XML files using bioperl-network requires the XML::Twig 
-module. See CPAN at www.perl.org for instructions on downloading 
-and installing XML::Twig.
+module. See https://metacpan.org/pod/XML::Twig.
 
-2. Installing bioperl-network (Unix, Mac OS X and Cygwin)
+INSTALLING BIOPERL-NETWORK (UNIX, MAC OS X AND CYGWIN)
   
 Using CPAN:
 
